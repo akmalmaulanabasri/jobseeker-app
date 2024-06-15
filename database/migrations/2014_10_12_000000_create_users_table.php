@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->text('description')->nullable();
             $table->string('profile_picture')->nullable();
-            $table->enum('role', ['recruiter', 'user']);
+            $table->enum('role', ['recruiter', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

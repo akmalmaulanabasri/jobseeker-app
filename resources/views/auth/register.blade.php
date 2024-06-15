@@ -35,9 +35,9 @@
             </div>
         </div>
         <div class="mb-1">
-            <label for="register-description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="register-description" name="description" placeholder=""
-                aria-describedby="register-description" tabindex="2" />
+            <label for="register-desctiption" class="form-label">Desctiption</label>
+            <input type="text" class="form-control" id="register-desctiption" name="description"
+                placeholder="john@example.com" aria-describedby="register-desctiption" tabindex="2" />
         </div>
 
         <div class="mb-1">

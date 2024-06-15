@@ -85,6 +85,7 @@ class UserController extends Controller
 
     public function authUser(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
@@ -92,20 +93,18 @@ class UserController extends Controller
             'address' => 'required|string',
             'password' => 'required|string',
             'description' => 'nullable|string',
-            // 'role' => 'required|string',
+            'role' => 'required|string',
         ]);
 
-        // dd($request->all());
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'description' => $request->description,
-            'password' => bcrypt($request->password),
-            'role' => 'user',
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->description = $request->description;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->role;
+        $user->save();
 
         return redirect()->route('login');
     }
