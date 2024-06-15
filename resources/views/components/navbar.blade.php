@@ -278,7 +278,7 @@
                             height="40" width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a class="dropdown-item"
-                        href="page-profile.html"><i class="me-50" data-feather="user"></i>
+                        href="{{ route('profile') }}"><i class="me-50" data-feather="user"></i>
                         Profile</a><a class="dropdown-item" href="app-email.html"><i class="me-50"
                             data-feather="mail"></i> Inbox</a><a class="dropdown-item" href="app-todo.html"><i
                             class="me-50" data-feather="check-square"></i> Task</a><a class="dropdown-item"
