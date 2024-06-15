@@ -1,10 +1,11 @@
 @extends('layout.auth')
 
 @section('content')
-    <form class="auth-login-form mt-2" action="index.html" method="POST">
+    <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
+    @csrf
         <div class="mb-1">
             <label for="login-email" class="form-label">Email</label>
-            <input type="text" class="form-control" id="login-email" name="login-email" placeholder="john@example.com"
+            <input type="email" class="form-control" id="login-email" name="email" placeholder="john@example.com"
                 aria-describedby="login-email" tabindex="1" autofocus />
         </div>
 
@@ -16,7 +17,7 @@
                 </a>
             </div>
             <div class="input-group input-group-merge form-password-toggle">
-                <input type="password" class="form-control form-control-merge" id="login-password" name="login-password"
+                <input type="password" class="form-control form-control-merge" id="login-password" name="password"
                     tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                     aria-describedby="login-password" />
                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>

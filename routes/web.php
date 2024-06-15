@@ -21,11 +21,13 @@ Route::get('/', function () {
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
-    });
+    })->name('dashboard');
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 });
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'auth'])->name('login');
 
 Route::get('/register/{role}', [UserController::class, 'register'])->name('register');
 Route::post('/register/{role}', [UserController::class, 'authRegister'])->name('register');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');

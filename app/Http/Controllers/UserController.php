@@ -34,16 +34,20 @@ class UserController extends Controller
 
 
         if (Auth::attempt($user)) {
-            $request->session()->regenerate();
-
-            return redirect()->name('dashboard');
+            if(Auth::attempt($user)){
+                if(Auth::user()->role == 'user'){
+                    return redirect()->route('dashboard')->with('successLogin', 'Anda berhasil login!!!');
+                } else if (Auth::user()->role == 'recruiter'){
+                    return redirect()->route('dashboard');
+                }
+            }
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->name('login');
+        return redirect()->route('login');
     }
 
     public function profile()
