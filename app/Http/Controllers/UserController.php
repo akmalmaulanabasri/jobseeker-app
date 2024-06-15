@@ -20,6 +20,7 @@ class UserController extends Controller
 
     public function authRegister(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
@@ -27,7 +28,7 @@ class UserController extends Controller
             'address' => 'required|string',
             'password' => 'required|string',
             'description' => 'nullable|string',
-            'role' => 'required|string',
+            // 'role' => '',
         ]);
 
         $user = new User();
@@ -37,7 +38,7 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->description = $request->description;
         $user->password = bcrypt($request->password);
-        $user->role = $request->role;
+        // $user->role = $request->role;
         $user->save();
 
         return redirect()->route('login');

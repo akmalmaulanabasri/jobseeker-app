@@ -2,6 +2,7 @@
 
 @section('content')
     <form class="auth-register-form mt-2" action="{{ route('auth-register') }}" method="POST">
+        @csrf
         <div class="mb-1">
             <label for="register-name" class="form-label">Name</label>
             <input type="text" class="form-control" id="register-name" name="name" placeholder="johndoe"
@@ -35,7 +36,7 @@
         </div>
         <div class="mb-1">
             <label for="register-desctiption" class="form-label">Desctiption</label>
-            <input type="text" class="form-control" id="register-desctiption" name="desctiption"
+            <input type="text" class="form-control" id="register-desctiption" name="description"
                 placeholder="john@example.com" aria-describedby="register-desctiption" tabindex="2" />
         </div>
 
