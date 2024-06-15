@@ -52,7 +52,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('auth.profile');
+        return view('auth.profile.profile');
     }
 
     public function authRegister(Request $request, $role)
@@ -109,5 +109,5 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
-    
+
 }

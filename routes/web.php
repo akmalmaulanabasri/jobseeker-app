@@ -30,3 +30,5 @@ Route::post('/login', [UserController::class, 'auth'])->name('login');
 
 Route::get('/register/{role}', [UserController::class, 'register'])->name('register');
 Route::post('/register/{role}', [UserController::class, 'authRegister'])->name('register');
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
