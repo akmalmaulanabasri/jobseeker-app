@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDO;
 
 class UserController extends Controller
 {
@@ -12,9 +14,9 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function register()
+    public function registerReqruiter()
     {
-        return view('auth.register');
+        return view('auth.register-reqruiter');
     }
 
     public function auth(Request $request)
@@ -24,10 +26,10 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        
+
         if (Auth::attempt($user)) {
             $request->session()->regenerate();
-            
+
             return redirect()->name('dashboard');
         }
     }
@@ -41,5 +43,59 @@ class UserController extends Controller
     public function profile()
     {
         return view('auth.profile');
+    }
+
+    public function authRecruiter(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'password' => 'required|string',
+            'description' => 'nullable|string',
+            // 'role' => 'required|string',
+        ]);
+        
+        // dd($request->all());
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'description' => $request->description,
+            'password' => bcrypt($request->password),
+            'role' => 'reqruiter',
+        ]);
+
+        return redirect()->route('login');
+    }
+
+    public function authUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'password' => 'required|string',
+            'description' => 'nullable|string',
+            // 'role' => 'required|string',
+        ]);
+        
+        // dd($request->all());
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'description' => $request->description,
+            'password' => bcrypt($request->password),
+            'role' => 'user',
+        ]);
+
+        return redirect()->route('login');
     }
 }
