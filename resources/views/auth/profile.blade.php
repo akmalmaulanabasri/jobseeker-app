@@ -130,7 +130,7 @@
                                         <div class="mt-2">
                                             <h5 class="mb-50">Deskripsi</h5>
                                             <p class="card-text mb-0">Lorem ipsum dolor sit amet consectetur adipisicing
-                                                elit. Numquam, esse.</p>
+                                                elit. Numquam, esse.    </p>
                                         </div>
                                     </div>
                                 </div>
