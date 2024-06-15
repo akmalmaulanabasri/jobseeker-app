@@ -14,9 +14,15 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function registerReqruiter()
+    public function register($role)
     {
-        return view('auth.register-reqruiter');
+        if ($role !== 'recruiter' && $role !== 'user') {
+            return redirect()->route('landing');
+        }
+
+        return view('auth.register', [
+            'role' => $role
+        ]);
     }
 
     public function auth(Request $request)
@@ -45,7 +51,7 @@ class UserController extends Controller
         return view('auth.profile');
     }
 
-    public function authRecruiter(Request $request)
+    public function authRegister(Request $request, $role)
     {
         $request->validate([
             'name' => 'required|string',
@@ -54,10 +60,11 @@ class UserController extends Controller
             'address' => 'required|string',
             'password' => 'required|string',
             'description' => 'nullable|string',
-            // 'role' => 'required|string',
         ]);
-        
-        // dd($request->all());
+
+        if ($role !== 'recruiter' && $role !== 'user') {
+            return redirect()->back();
+        }
 
         User::create([
             'name' => $request->name,
@@ -66,7 +73,7 @@ class UserController extends Controller
             'address' => $request->address,
             'description' => $request->description,
             'password' => bcrypt($request->password),
-            'role' => 'reqruiter',
+            'role' => $role,
         ]);
 
         return redirect()->route('login');
@@ -83,7 +90,7 @@ class UserController extends Controller
             'description' => 'nullable|string',
             // 'role' => 'required|string',
         ]);
-        
+
         // dd($request->all());
 
         User::create([

@@ -15,10 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard.index');
+    return view('welcome');
+})->name('landing');
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard.index');
+    });
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 });
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::get('/register/recruiter', [UserController::class, 'registerRecruiter'])->name('register.recruiter');
-Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-Route::post('/auth-register', [UserController::class, 'authRegister'])->name('auth-register-recruiter');
+
+Route::get('/register/{role}', [UserController::class, 'register'])->name('register');
+Route::post('/register/{role}', [UserController::class, 'authRegister'])->name('register');
