@@ -56,17 +56,26 @@
                         data-i18n="Dashboards">Dashboards</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1">2</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="dashboard-analytics.html"><i
+                @if (Auth::check() && Auth::user()->role == 'recruiter')
+                    <li><a class="d-flex align-items-center" href="{{ route('posting.index') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Analytics">Analytics</span></a>
+                                data-i18n="Analytics">Posting</span></a>
                     </li>
-                    <li class="active"><a class="d-flex align-items-center" href="dashboard-ecommerce.html"><i
+                @endif
+                    <li class=""><a class="d-flex align-items-center" href="dashboard-ecommerce.html"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="eCommerce">eCommerce</span></a>
+                    </li>
+                    <li class=""><a class="d-flex align-items-center" href="dashboard-ecommerce.html"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="eCommerce">eCommerce</span></a>
                     </li>
                 </ul>
             </li>
-            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
+
+
+            
+            {{-- <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="app-email.html"><i
@@ -662,7 +671,7 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="https://pixinvent.ticksy.com/"
                     target="_blank"><i data-feather="life-buoy"></i><span class="menu-title text-truncate"
                         data-i18n="Raise Support">Raise Support</span></a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>
