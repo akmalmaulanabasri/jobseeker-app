@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posting;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PostingController extends Controller
@@ -12,9 +13,8 @@ class PostingController extends Controller
      */
     public function index()
     {
-        return view('dashboard.posting.index', [
-            'posting' => Posting::all()
-        ]);
+        $postings = Posting::where('user_id', Auth::id())->get();
+        return view('dashboard.posting.index', compact('postings'));
     }
 
     /**
