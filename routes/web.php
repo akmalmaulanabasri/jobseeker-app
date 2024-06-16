@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,9 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/profile', [UserController::class, 'profile'])->name('profile');
         Route::patch('/edit-profile/{id}', [UserController::class, 'edit'])->name('edit-profile');
         Route::patch('/update-profile/{id}', [UserController::class, 'update'])->name('update-profile');
+
+        Route::post('/pengalaman-kerja', [ExperienceController::class, 'create'])->name('pengalaman-kerja');
+        Route::post('/skill', [SkillController::class, 'create'])->name('skill');
     });
 });
 

@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('dashboard')
-    <div class="app-content content ">
+    <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
@@ -12,12 +12,9 @@
                             <h2 class="content-header-title float-start mb-0">Profile</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="#">Pages</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">Profile
-                                    </li>
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                                    <li class="breadcrumb-item active">Profile</li>
                                 </ol>
                             </div>
                         </div>
@@ -25,7 +22,6 @@
                 </div>
             </div>
 
-            {{-- @foreach ($user as $user) --}}
             <div class="content-body">
                 <div id="user-profile">
                     <!-- profile header -->
@@ -71,12 +67,6 @@
                                         <!-- collapse  -->
                                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                             <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0">
-                                                <!-- camera button -->
-                                                <button class="btn btn-primary me-2">
-                                                    <i data-feather="camera" class="d-block d-md-none"></i>
-                                                    <span class="fw-bold d-none d-md-block"><i
-                                                            data-feather="camera"></i></span>
-                                                </button>
                                                 <!-- edit button -->
                                                 <form action="{{ route('edit-profile', $user->id) }}" method="POST">
                                                     @csrf
@@ -88,7 +78,6 @@
                                                 </form>
                                             </div>
                                         </div>
-
                                         <!--/ collapse  -->
                                     </nav>
                                     <!--/ navbar -->
@@ -111,20 +100,20 @@
                                             <p class="card-text">{{ $user->name }}</p>
                                         </div>
                                         <div class="mt-2">
-                                            <h5 class="mb-75">Email : </h5>
+                                            <h5 class="mb-75">Email:</h5>
                                             <p class="card-text">{{ $user->email }}</p>
                                         </div>
                                         <div class="mt-2">
-                                            <h5 class="mb-75">Nomor Handphone</h5>
+                                            <h5 class="mb-75">Nomor Handphone:</h5>
                                             <p class="card-text">{{ $user->phone }}</p>
                                         </div>
                                         <div class="mt-2">
-                                            <h5 class="mb-75">Alamat : </h5>
+                                            <h5 class="mb-75">Alamat:</h5>
                                             <p class="card-text">{{ $user->address }}</p>
                                         </div>
                                         <div class="mt-2">
-                                            <h5 class="mb-50">Deskripsi</h5>
-                                            <p class="card-text mb-0">{{ $user->description }} </p>
+                                            <h5 class="mb-50">Deskripsi:</h5>
+                                            <p class="card-text mb-0">{{ $user->description }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -133,9 +122,98 @@
                             <!--/ left profile info section -->
                         </div>
                     </section>
+
+                    <!-- Work Experience section -->
+                    <section id="work-experience">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+
+                                        <h4 class="card-title">Pengalaman Kerja</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="work-experience-form" action="{{ route('pengalaman-kerja') }}"
+                                            method="POST">
+                                            @csrf
+                                            <div id="work-experience-container">
+                                                <div class="work-experience-entry mb-2">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label for="company_name">Nama Perusahaan</label>
+                                                            <input type="text" class="form-control" name="company_name"
+                                                                required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="job_title">Posisi</label>
+                                                            <input type="text" class="form-control" name="position"
+                                                                required>
+                                                        </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <label for="start_date">Tanggal Mulai</label>
+                                                            <input type="date" class="form-control" name="start_date"
+                                                                required>
+                                                        </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <label for="end_date">Tanggal Selesai</label>
+                                                            <input type="date" class="form-control" name="end_date">
+                                                        </div>
+                                                        <div class="col-md-12 mt-2">
+                                                            <label for="job_description">Deskripsi Pekerjaan</label>
+                                                            <textarea class="form-control" name="description" rows="2" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-secondary mt-2"
+                                                id="add-work-experience-btn">Tambah Pengalaman Kerja</button>
+                                            <button type="submit" class="btn btn-primary mt-2">Simpan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Skills section -->
+                    <section id="skills">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Keahlian dan Keterampilan</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="skills-form" action="{{ route('skill') }}" method="POST">
+                                            @csrf
+                                            <div id="skills-container">
+                                                <div class="skill-entry mb-2">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label for="skill_name">Nama Keahlian</label>
+                                                            <input type="text" class="form-control" name="title"
+                                                                required>
+                                                        </div>
+                                                        {{-- <div class="col-md-6">
+                                                            <label for="proficiency_level">Tingkat Keahlian</label>
+                                                            <input type="text" class="form-control"
+                                                                name="proficiency_level[]" required>
+                                                        </div> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-secondary mt-2"
+                                                id="add-skill-btn">Tambah Keahlian</button>
+                                            <button type="submit" class="btn btn-primary mt-2">Simpan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
             </div>
-            {{-- @endforeach --}}
         </div>
     </div>
 @endsection

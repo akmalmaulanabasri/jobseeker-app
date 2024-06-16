@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pengalaman_Kerja extends Model
+class Skill extends Model
 {
     use HasFactory;
-    protected $table = 'pengalaman__kerjas';
+    protected $table = 'skills';
     protected $fillable = [
         'user_id',
-        'start_date',
-        'end_date',
-        'company_name',
-        'description'
+        'title'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

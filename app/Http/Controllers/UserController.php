@@ -165,30 +165,6 @@ class UserController extends Controller
         $user->description = $request->description;
         $user->save();
 
-        // // Handle the profile picture upload
-        // if ($request->hasFile('profile_picture')) {
-        //     $imgConver = $request->file('profile_picture');
-        //     $img = time() . rand() . '.' . $imgConver->extension();
-
-        //     if (!file_exists(public_path('/storage/image/' . $imgConver->getClientOriginalName()))) {
-        //         $destination = public_path('/storage/image/');
-        //         $imgConver->move($destination, $img);
-        //         $upload = $img;
-        //     } else {
-        //         $upload = $img;
-        //     }
-        // }
-
-        // User::where('id', $id)->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'phone' => $request->phone,
-        //     'address' => $request->address,
-        //     'description' => $request->description,
-        //     'password' => bcrypt($request->password),
-        //     'profile_picture' => $upload,
-        // ]);
-
         return redirect()->route('profile');
     }
 }
