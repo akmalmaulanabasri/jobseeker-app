@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,16 +21,25 @@ Route::get('/', function () {
 })->name('landing');
 
 Route::prefix('dashboard')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
-    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::middleware('isLogin')->group(function () {
+        Route::get('/', function () {
+            return view('dashboard.index');
+        })->name('dashboard');
+        Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+        Route::patch('/edit-profile/{id}', [UserController::class, 'edit'])->name('edit-profile');
+        Route::patch('/update-profile/{id}', [UserController::class, 'update'])->name('update-profile');
+
+        Route::post('/pengalaman-kerja', [ExperienceController::class, 'create'])->name('pengalaman-kerja');
+        Route::post('/skill', [SkillController::class, 'create'])->name('skill');
+    });
 });
 
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/login', [UserController::class, 'auth'])->name('login');
+Route::middleware('isGuest')->group(function () {
+
+    Route::get('/login', [UserController::class, 'login'])->name('login');
+    Route::post('/auth-login', [UserController::class, 'auth'])->name('auth-login');
+});
 
 Route::get('/register/{role}', [UserController::class, 'register'])->name('register');
-Route::post('/register/{role}', [UserController::class, 'authRegister'])->name('register');
-
+Route::post('/auth-register/{role}', [UserController::class, 'authRegister'])->name('auth-register');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');

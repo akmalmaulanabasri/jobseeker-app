@@ -1,7 +1,7 @@
 @extends('layout.auth')
 
 @section('content')
-    <form class="auth-register-form mt-2" action="{{ route('register', $role) }}" method="POST">
+    <form class="auth-register-form mt-2" action="{{ route('auth-register', $role) }}" method="POST">
         @csrf
         <div class="mb-1">
             <label for="register-name" class="form-label">Name</label>

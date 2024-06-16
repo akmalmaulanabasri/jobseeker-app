@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PDO;
 
 class UserController extends Controller
 {
@@ -27,21 +26,28 @@ class UserController extends Controller
 
     public function auth(Request $request)
     {
-        $user = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+        $request->validate([
+            'email' => 'required|exists:users,email',
+            'password' => 'required',
+        ], [
+            'email.exists' => 'email not found',
+            'email.required' => 'email not be empty',
+            'password.required' => 'password not be empty',
         ]);
 
+        $user = $request->only('email', 'password');
 
         if (Auth::attempt($user)) {
-            if(Auth::attempt($user)){
-                if(Auth::user()->role == 'user'){
-                    return redirect()->route('dashboard')->with('successLogin', 'Anda berhasil login!!!');
-                } else if (Auth::user()->role == 'recruiter'){
-                    return redirect()->route('dashboard');
-                }
-            }
+            return redirect('dashboard')->with('toast_success', 'Andap Berhasil Login');
         }
+
+        return redirect('login')->with('toast_error', 'Anda Gagal Login');
+    }
+
+    public function edit($id)
+    {
+        $user = User::where('id', $id)->first();
+        return view('auth.profile.edit', compact('user'));
     }
 
     public function logout()
@@ -52,7 +58,8 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('auth.profile.profile');
+        $user = Auth::user();
+        return view('auth.profile.profile', compact('user'));
     }
 
     public function authRegister(Request $request, $role)
@@ -85,7 +92,6 @@ class UserController extends Controller
 
     public function authUser(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
@@ -109,5 +115,37 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'password' => 'required|string',
+            'profile_picture' => 'nullable|image|file|max:1024',
+            'description' => 'nullable|string',
+        ]);
 
+        $user = Auth::user();
+
+        if ($request->hasFile('profile_picture')) {
+            $photo = $request->file('profile_picture');
+            $photo_name = time() . $photo->getClientOriginalName();
+            $photo->move(public_path('/storage/image/'), $photo_name);
+
+            $user->profile_picture = $photo_name;
+            $user->save();
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = $request->password;
+        $user->description = $request->description;
+        $user->save();
+
+        return redirect()->route('profile');
+    }
 }

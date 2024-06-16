@@ -1,8 +1,8 @@
 @extends('layout.auth')
 
 @section('content')
-    <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
-    @csrf
+    <form class="auth-login-form mt-2" action="{{ route('auth-login') }}" method="POST">
+        @csrf
         <div class="mb-1">
             <label for="login-email" class="form-label">Email</label>
             <input type="email" class="form-control" id="login-email" name="email" placeholder="john@example.com"
