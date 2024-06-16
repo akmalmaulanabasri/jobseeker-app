@@ -10,4 +10,9 @@ class Posting extends Model
     use HasFactory;
     protected $table = 'postings';
     protected $guarded = ['id'];
+
+    public function lamaran()
+    {
+        return $this->hasMany(Lamaran::class, 'posting_id', 'id');
+    }
 }
