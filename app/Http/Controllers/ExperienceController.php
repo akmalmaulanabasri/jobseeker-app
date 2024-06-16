@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ExperienceController extends Controller
 {
+
+    public function createPengalamanKerja()
+    {
+        return view('auth.profile.pengalaman_kerja.create');
+    }
+
+    public function createKetampilan()
+    {
+        return view('auth.profile.keterampilan.create');
+    }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -27,6 +38,6 @@ class ExperienceController extends Controller
         $experience->description = $request->description;
         $experience->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('profile');
     }
 }

@@ -13,7 +13,7 @@ class PostingController extends Controller
      */
     public function index()
     {
-        $postings = Posting::where('user_id', Auth::id())->get();
+        $postings = Posting::where('id', Auth::id())->get();
         return view('dashboard.posting.index', compact('postings'));
     }
 

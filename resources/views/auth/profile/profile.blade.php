@@ -125,60 +125,83 @@
 
                     @if (Auth::user()->role == 'user')
                         <!-- Work Experience section -->
-                        <section id="work-experience">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-header">
-
-                                            <h4 class="card-title">Pengalaman Kerja</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <form id="work-experience-form" action="{{ route('pengalaman-kerja') }}"
-                                                method="POST">
-                                                @csrf
+                        @foreach ($pengalaman as $item)
+                            {{-- @dd($pengalaman) --}}
+                            <section id="work-experience">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
                                                 <div id="work-experience-container">
                                                     <div class="work-experience-entry mb-2">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <label for="company_name">Nama Perusahaan</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="company_name" required>
+                                                                <h3>{{ $item->company_name }}</h3>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label for="job_title">Posisi</label>
-                                                                <input type="text" class="form-control" name="position"
-                                                                    required>
+                                                                <h3>{{ $item->position }}</h3>
                                                             </div>
                                                             <div class="col-md-6 mt-2">
                                                                 <label for="start_date">Tanggal Mulai</label>
-                                                                <input type="date" class="form-control"
-                                                                    name="start_date" required>
+                                                                <h3>{{ $item->start_date }}</h3>
                                                             </div>
                                                             <div class="col-md-6 mt-2">
                                                                 <label for="end_date">Tanggal Selesai</label>
-                                                                <input type="date" class="form-control"
-                                                                    name="end_date">
+                                                                <h3>{{ $item->end_date }}</h3>
                                                             </div>
                                                             <div class="col-md-12 mt-2">
                                                                 <label for="job_description">Deskripsi Pekerjaan</label>
-                                                                <textarea class="form-control" name="description" rows="2" required></textarea>
+                                                                <h3>{{ $item->description }}</h3>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button type="button" class="btn btn-secondary mt-2"
-                                                    id="add-work-experience-btn">Tambah Pengalaman Kerja</button>
-                                                <button type="submit" class="btn btn-primary mt-2">Simpan</button>
-                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </section>
+                        @endforeach
+                        <section id="work-experience">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Pengalaman Kerja</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <a href="{{ route('create-pengalaman-kerja') }}"
+                                                class="btn btn-primary">Tambah Pengalaman
+                                                Kerja</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </section>
-
                         <!-- Skills section -->
-                        <section id="skills">
+                        @foreach ($keterampilan as $item)
+                            <section id="work-experience">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div id="skills-container">
+                                                    <div class="skill-entry mb-2">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label for="skill_name">Nama Keahlian</label>
+                                                                <h3>{{ $item->title }}</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </section>
+                        @endforeach
+                        <section id="work-experience">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card">
@@ -186,32 +209,11 @@
                                             <h4 class="card-title">Keahlian dan Keterampilan</h4>
                                         </div>
                                         <div class="card-body">
-                                            <form id="skills-form" action="{{ route('skill') }}" method="POST">
-                                                @csrf
-                                                <div id="skills-container">
-                                                    <div class="skill-entry mb-2">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="skill_name">Nama Keahlian</label>
-                                                                <input type="text" class="form-control" name="title"
-                                                                    required>
-                                                            </div>
-                                                            {{-- <div class="col-md-6">
-                                                            <label for="proficiency_level">Tingkat Keahlian</label>
-                                                            <input type="text" class="form-control"
-                                                                name="proficiency_level[]" required>
-                                                        </div> --}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button type="button" class="btn btn-secondary mt-2"
-                                                    id="add-skill-btn">Tambah Keahlian</button>
-                                                <button type="submit" class="btn btn-primary mt-2">Simpan</button>
-                                            </form>
+                                            <a href="{{ route('create-keterampilan') }}" class="btn btn-primary">Tambah
+                                                Keterampilan</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </section>
                     @endif
 

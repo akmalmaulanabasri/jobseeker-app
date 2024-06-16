@@ -31,6 +31,8 @@ Route::prefix('dashboard')->group(function () {
         Route::patch('/update-profile/{id}', [UserController::class, 'update'])->name('update-profile');
 
         Route::post('/pengalaman-kerja', [ExperienceController::class, 'create'])->name('pengalaman-kerja');
+        Route::get('/create-pengalaman-kerja', [ExperienceController::class, 'createPengalamanKerja'])->name('create-pengalaman-kerja');
+        Route::get('/create-keterampilan', [ExperienceController::class, 'createKetampilan'])->name('create-keterampilan');
         Route::post('/skill', [SkillController::class, 'create'])->name('skill');
         Route::resource('posting', PostingController::class);
     });

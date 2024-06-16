@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experience;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,7 +61,9 @@ class UserController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        return view('auth.profile.profile', compact('user'));
+        $pengalaman = Experience::where('user_id', $user->id)->get();
+        $keterampilan = Skill::where('user_id', $user->id)->get();
+        return view('auth.profile.profile', compact('user', 'pengalaman', 'keterampilan'));
     }
 
     public function authRegister(Request $request, $role)
