@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PDO;
 
 class UserController extends Controller
 {
@@ -40,24 +39,9 @@ class UserController extends Controller
 
         if (Auth::attempt($user)) {
             return redirect('dashboard')->with('toast_success', 'Andap Berhasil Login');
-        } else {
-            return redirect('login')->with('toast_error', 'Anda Gagal Login');
         }
-        // $user = $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required'
-        // ]);
-        // dd($user);
 
-        // if (Auth::attempt($user)) {
-        //     if (Auth::attempt($user)) {
-        //         if (Auth::user()->role == 'user') {
-        //             return redirect()->route('dashboard')->with('successLogin', 'Anda berhasil login!!!');
-        //         } else if (Auth::user()->role == 'recruiter') {
-        //             return redirect()->route('dashboard');
-        //         }
-        //     }
-        // }
+        return redirect('login')->with('toast_error', 'Anda Gagal Login');
     }
 
     public function edit($id)
@@ -108,7 +92,6 @@ class UserController extends Controller
 
     public function authUser(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
@@ -134,7 +117,6 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validate the request data
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
@@ -145,8 +127,7 @@ class UserController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $id_user = Auth::user()->id;
-        $user = User::find($id_user);
+        $user = Auth::user();
 
         if ($request->hasFile('profile_picture')) {
             $photo = $request->file('profile_picture');
