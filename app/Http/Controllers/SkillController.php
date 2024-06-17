@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class SkillController extends Controller
 {
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         $request->validate([
             'title' => 'required',
         ]);
@@ -19,6 +20,6 @@ class SkillController extends Controller
         $skill->title = $request->title;
         $skill->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('profile');
     }
 }

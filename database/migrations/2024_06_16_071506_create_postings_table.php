@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('postings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('judul_pekerjaan');
             $table->text('deskripsi_pekerjaan');
             $table->string('lokasi_pekerjaan');

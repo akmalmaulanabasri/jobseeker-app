@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->hasMany(Lamaran::class, 'user_id', 'id');
     }
 
+    public function posting()
+    {
+        return $this->hasMany(Posting::class, 'user_id', 'id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
