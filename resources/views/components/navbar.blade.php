@@ -175,20 +175,16 @@
                             <div class="badge rounded-pill badge-light-primary">6 New</div>
                         </div>
                     </li>
-                    <li class="scrollable-container media-list"><a class="d-flex" href="#">
-                            <div class="list-item d-flex align-items-start">
-                                <div class="me-1">
-                                    <div class="avatar"><img
-                                            src="{{ asset('app-assets') }}/images/portrait/small/avatar-s-15.jpg"
-                                            alt="avatar" width="32" height="32"></div>
-                                </div>
-                                <div class="list-item-body flex-grow-1">
-                                    <p class="media-heading"><span class="fw-bolder">Congratulation Sam
-                                            🎉</span>winner!</p><small class="notification-text"> Won the monthly
-                                        best seller badge.</small>
-                                </div>
-                            </div>
-                        </a><a class="d-flex" href="#">
+                    
+                    <li class="scrollable-container media-list">
+                        @foreach (auth()->user()->notifications as $notification)
+                    <li>
+                        {{ $notification->data['nama_pelamar'] }} melamar pekerjaan Anda.
+                        <a href="{{ url('/dashboard/show-lamaran/' . $notification->data['lamaran_id']) }}">Lihat
+                            Lamaran</a>
+                    </li>
+                    @endforeach
+                    {{-- <a class="d-flex" href="#">
                             <div class="list-item d-flex align-items-start">
                                 <div class="me-1">
                                     <div class="avatar"><img
@@ -201,7 +197,8 @@
                                         have 10 unread messages</small>
                                 </div>
                             </div>
-                        </a><a class="d-flex" href="#">
+                        </a>
+                        <a class="d-flex" href="#">
                             <div class="list-item d-flex align-items-start">
                                 <div class="me-1">
                                     <div class="avatar bg-light-danger">
@@ -214,84 +211,82 @@
                                         order updated</small>
                                 </div>
                             </div>
-                        </a>
-                        <div class="list-item d-flex align-items-center">
-                            <h6 class="fw-bolder me-auto mb-0">System Notifications</h6>
-                            <div class="form-check form-check-primary form-switch">
-                                <input class="form-check-input" id="systemNotification" type="checkbox"
-                                    checked="">
-                                <label class="form-check-label" for="systemNotification"></label>
-                            </div>
-                        </div><a class="d-flex" href="#">
-                            <div class="list-item d-flex align-items-start">
-                                <div class="me-1">
-                                    <div class="avatar bg-light-danger">
-                                        <div class="avatar-content"><i class="avatar-icon" data-feather="x"></i>
-                                        </div>
+                        </a> --}}
+                    <div class="list-item d-flex align-items-center">
+                        <h6 class="fw-bolder me-auto mb-0">System Notifications</h6>
+                        <div class="form-check form-check-primary form-switch">
+                            <input class="form-check-input" id="systemNotification" type="checkbox" checked="">
+                            <label class="form-check-label" for="systemNotification"></label>
+                        </div>
+                    </div><a class="d-flex" href="#">
+                        <div class="list-item d-flex align-items-start">
+                            <div class="me-1">
+                                <div class="avatar bg-light-danger">
+                                    <div class="avatar-content"><i class="avatar-icon" data-feather="x"></i>
                                     </div>
                                 </div>
-                                <div class="list-item-body flex-grow-1">
-                                    <p class="media-heading"><span class="fw-bolder">Server
-                                            down</span>&nbsp;registered</p><small class="notification-text"> USA
-                                        Server is down due to high CPU usage</small>
-                                </div>
                             </div>
-                        </a><a class="d-flex" href="#">
-                            <div class="list-item d-flex align-items-start">
-                                <div class="me-1">
-                                    <div class="avatar bg-light-success">
-                                        <div class="avatar-content"><i class="avatar-icon" data-feather="check"></i>
-                                        </div>
+                            <div class="list-item-body flex-grow-1">
+                                <p class="media-heading"><span class="fw-bolder">Server
+                                        down</span>&nbsp;registered</p><small class="notification-text"> USA
+                                    Server is down due to high CPU usage</small>
+                            </div>
+                        </div>
+                    </a><a class="d-flex" href="#">
+                        <div class="list-item d-flex align-items-start">
+                            <div class="me-1">
+                                <div class="avatar bg-light-success">
+                                    <div class="avatar-content"><i class="avatar-icon" data-feather="check"></i>
                                     </div>
                                 </div>
-                                <div class="list-item-body flex-grow-1">
-                                    <p class="media-heading"><span class="fw-bolder">Sales
-                                            report</span>&nbsp;generated</p><small class="notification-text"> Last
-                                        month sales report generated</small>
+                            </div>
+                            <div class="list-item-body flex-grow-1">
+                                <p class="media-heading"><span class="fw-bolder">Sales
+                                        report</span>&nbsp;generated</p><small class="notification-text"> Last
+                                    month sales report generated</small>
+                            </div>
+                        </div>
+                    </a><a class="d-flex" href="#">
+                        <div class="list-item d-flex align-items-start">
+                            <div class="me-1">
+                                <div class="avatar bg-light-warning">
+                                    <div class="avatar-content"><i class="avatar-icon"
+                                            data-feather="alert-triangle"></i></div>
                                 </div>
                             </div>
-                        </a><a class="d-flex" href="#">
-                            <div class="list-item d-flex align-items-start">
-                                <div class="me-1">
-                                    <div class="avatar bg-light-warning">
-                                        <div class="avatar-content"><i class="avatar-icon"
-                                                data-feather="alert-triangle"></i></div>
-                                    </div>
-                                </div>
-                                <div class="list-item-body flex-grow-1">
-                                    <p class="media-heading"><span class="fw-bolder">High memory</span>&nbsp;usage
-                                    </p><small class="notification-text"> BLR Server using high memory</small>
-                                </div>
+                            <div class="list-item-body flex-grow-1">
+                                <p class="media-heading"><span class="fw-bolder">High memory</span>&nbsp;usage
+                                </p><small class="notification-text"> BLR Server using high memory</small>
                             </div>
-                        </a>
-                    </li>
-                    <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="#">Read all
-                            notifications</a></li>
-                </ul>
+                        </div>
+                    </a>
             </li>
-            <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
-                    id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">John Doe</span><span
-                            class="user-status">Admin</span></div><span class="avatar"><img class="round"
-                            src="{{ asset('app-assets') }}/images/portrait/small/avatar-s-11.jpg" alt="avatar"
-                            height="40" width="40"><span class="avatar-status-online"></span></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a class="dropdown-item"
-                        href="{{ route('profile') }}"><i class="me-50" data-feather="user"></i>
-                        Profile</a><a class="dropdown-item" href="app-email.html"><i class="me-50"
-                            data-feather="mail"></i> Inbox</a><a class="dropdown-item" href="app-todo.html"><i
-                            class="me-50" data-feather="check-square"></i> Task</a><a class="dropdown-item"
-                        href="app-chat.html"><i class="me-50" data-feather="message-square"></i> Chats</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="page-account-settings.html"><i
-                            class="me-50" data-feather="settings"></i>
-                        Settings</a><a class="dropdown-item" href="page-pricing.html"><i class="me-50"
-                            data-feather="credit-card"></i> Pricing</a><a class="dropdown-item"
-                        href="page-faq.html"><i class="me-50" data-feather="help-circle"></i> FAQ</a><a
-                        class="dropdown-item" href="{{ route('logout') }}"><i class="me-50"
-                            data-feather="power"></i> Logout</a>
-                </div>
-            </li>
+            <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="#">Read all
+                    notifications</a></li>
+        </ul>
+        </li>
+        <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
+                id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">John Doe</span><span
+                        class="user-status">Admin</span></div><span class="avatar"><img class="round"
+                        src="{{ asset('app-assets') }}/images/portrait/small/avatar-s-11.jpg" alt="avatar"
+                        height="40" width="40"><span class="avatar-status-online"></span></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a class="dropdown-item"
+                    href="{{ route('profile') }}"><i class="me-50" data-feather="user"></i>
+                    Profile</a><a class="dropdown-item" href="app-email.html"><i class="me-50"
+                        data-feather="mail"></i> Inbox</a><a class="dropdown-item" href="app-todo.html"><i
+                        class="me-50" data-feather="check-square"></i> Task</a><a class="dropdown-item"
+                    href="app-chat.html"><i class="me-50" data-feather="message-square"></i> Chats</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="page-account-settings.html"><i
+                        class="me-50" data-feather="settings"></i>
+                    Settings</a><a class="dropdown-item" href="page-pricing.html"><i class="me-50"
+                        data-feather="credit-card"></i> Pricing</a><a class="dropdown-item" href="page-faq.html"><i
+                        class="me-50" data-feather="help-circle"></i> FAQ</a><a class="dropdown-item"
+                    href="{{ route('logout') }}"><i class="me-50" data-feather="power"></i> Logout</a>
+            </div>
+        </li>
         </ul>
     </div>
 </nav>

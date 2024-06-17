@@ -101,7 +101,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'phone' => 'required|string',
             'address' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|string|min:6',
             'description' => 'nullable|string',
             'role' => 'required|string',
         ]);
@@ -126,28 +126,31 @@ class UserController extends Controller
             'email' => 'required|email',
             'phone' => 'required|string',
             'address' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'nullable|string|min:6', // Jadikan password bisa tidak wajib diisi
             'profile_picture' => 'nullable|image|file|max:1024',
             'description' => 'nullable|string',
         ]);
 
-        $user = Auth::user();
+        $user = User::findOrFail($id);
 
         if ($request->hasFile('profile_picture')) {
             $photo = $request->file('profile_picture');
-            $photo_name = time() . $photo->getClientOriginalName();
+            $photo_name = time() . '_' . $photo->getClientOriginalName();
             $photo->move(public_path('/storage/image/'), $photo_name);
 
             $user->profile_picture = $photo_name;
-            $user->save();
         }
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->password = $request->password;
         $user->description = $request->description;
+
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+        }
+
         $user->save();
 
         return redirect()->route('profile');

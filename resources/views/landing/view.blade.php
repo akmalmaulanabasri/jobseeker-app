@@ -29,10 +29,11 @@
                                                 <li>{{ $item->persyaratan_dan_kualifikasi }}</li>
                                             </ul>
                                         </div>
-                                        <form action="{{ route('show-pekerjaan', $item->id) }}" method="POST">
+                                        <a href="{{ route('show-pekerjaan', $item->id) }}" class="btn btn-primary">Detail
+                                            Lamaran</a>
+                                        {{-- <form action="{{ route('show-pekerjaan', $item->id) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-primary">Detail Lamaran</button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </div>
                             </div>

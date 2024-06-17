@@ -44,10 +44,12 @@
                                         <h5 class="card-subtitle">Deskripsi Pekerjaan</h5>
                                         <p class="card-text">{{ $posting->deskripsi_pekerjaan }}</p>
                                     </div>
-                                    <form action="{{ route('create-pekerjaan', $posting->id) }}" method="POST">
+                                    <a href="{{ route('create-pekerjaan', $posting->id) }}" class="btn btn-primary">Lamar
+                                        Pekerjaan</a>
+                                    {{-- <form action="{{ route('create-pekerjaan', $posting->id) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">Lamar Pekerjaan</button>
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </div>
                         </div>

@@ -19,13 +19,16 @@
                                     <div id="lamarankerja">
                                         <div class="work-experience-entry mb-2">
                                             <div class="row">
+                                                <input type="hidden" name="posting_id" value="{{ $posting->id }}">
+                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                                 <div class="col-md-6">
                                                     <label for="company_name">Nama Lengkap</label>
                                                     <input type="text" class="form-control" name="nama_lengkap" required>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="job_title">Nomor Telpon</label>
-                                                    <input type="number" class="form-control" name="nomor_telpon" required>
+                                                    <input type="number" class="form-control" name="nomor_telepon"
+                                                        required>
                                                 </div>
                                                 <div class="col-md-6 mt-2">
                                                     <label for="email">Email</label>

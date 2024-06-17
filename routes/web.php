@@ -38,8 +38,8 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('posting', PostingController::class)->middleware('auth');
 
     Route::get('/cari-pekerjaan', [LamaranController::class, 'index'])->name('cari-pekerjaan')->middleware('auth');
-    Route::post('/show-pekerjaan/{id}', [LamaranController::class, 'showPekerjaan'])->name('show-pekerjaan')->middleware('auth');
-    Route::post('/create-pekerjaan/{id}', [LamaranController::class, 'createPekerjaan'])->name('create-pekerjaan')->middleware('auth');
+    Route::get('/show-pekerjaan/{id}', [LamaranController::class, 'showPekerjaan'])->name('show-pekerjaan')->middleware('auth');
+    Route::get('/create-pekerjaan/{id}', [LamaranController::class, 'createPekerjaan'])->name('create-pekerjaan')->middleware('auth');
     Route::post('/auth-pekerjaan', [LamaranController::class, 'create'])->name('auth-pekerjaan')->middleware('auth');
 });
 

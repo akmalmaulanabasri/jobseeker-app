@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Lamaran;
 use App\Models\Posting;
+use App\Models\User;
+use App\Notifications\LamaranDiterima;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LamaranController extends Controller
 {
@@ -27,32 +30,45 @@ class LamaranController extends Controller
 
     public function createPekerjaan($id)
     {
-        return view('landing.create');
+        $posting = Posting::find($id);
+        return view('landing.create', compact('posting'));
     }
+
+    // app/Http/Controllers/LamaranController.php
 
     public function create(Request $request)
     {
-        dd($request->all());
-        $lamaran = $request->validate([
-            'posting_id' => 'required',
-            'user_id' => 'required',
-            'nama_lengkap' => 'required',
-            'nomor_telepon' => 'required',
-            'email' => 'required',
-            'pesan_lamaran' => 'required',
+        $request->validate([
+            'posting_id' => 'required|exists:postings,id',
+            'user_id' => 'required|exists:users,id',
+            'nama_lengkap' => 'required|string|max:255',
+            'nomor_telepon' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+            'pesan_lamaran' => 'required|string|max:1000',
         ]);
 
-        dd($lamaran);
-
-        Lamaran::create([
-            'posting_id' => $lamaran['posting_id'],
-            'user_id' => $lamaran['user_id'],
-            'nama_lengkap' => $lamaran['nama_lengkap'],
-            'nomor_telepon' => $lamaran['nomor_telepon'],
-            'email' => $lamaran['email'],
-            'pesan_lamaran' => $lamaran['pesan_lamaran'],
-
+        $lamaran = Lamaran::create([
+            'posting_id' => $request->posting_id,
+            'user_id' => $request->user_id,
+            'nama_lengkap' => $request->nama_lengkap,
+            'nomor_telepon' => $request->nomor_telepon,
+            'email' => $request->email,
+            'pesan_lamaran' => $request->pesan_lamaran,
         ]);
-        return redirect()->route('/dashboard')->with('success', 'Lamaran berhasil dikirim');
+
+        // Dapatkan perekrut dari postingan pekerjaan
+        $posting = Posting::find($request->posting_id);
+        if ($posting) {
+            $recruiter = User::find($posting->user_id);
+            if ($recruiter) {
+                // Kirim notifikasi ke perekrut
+                $recruiter->notify(new LamaranDiterima($lamaran));
+            } else {
+                return redirect()->route('dashboard')->with('error', 'Perekrut tidak ditemukan.');
+            }
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Postingan tidak ditemukan.');
+        }
+        return redirect()->route('dashboard')->with('success', 'Lamaran berhasil dikirim');
     }
 }
