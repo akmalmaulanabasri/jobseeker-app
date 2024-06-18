@@ -21,6 +21,8 @@ return new class extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai')->nullable();
             $table->text('persyaratan_dan_kualifikasi');
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_paid')->default(false);
             $table->enum('jenis_pekerjaan', ['kontrak', 'part time', 'full time']);
             $table->string('cara_menghubungi');
             $table->timestamps();

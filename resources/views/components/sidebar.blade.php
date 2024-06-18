@@ -56,25 +56,27 @@
                         data-i18n="Dashboards">Dashboards</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1">2</span></a>
                 <ul class="menu-content">
-                @if (Auth::check() && Auth::user()->role == 'recruiter')
-                    <li><a class="d-flex align-items-center" href="{{ route('posting.index') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Analytics">Posting</span></a>
-                    </li>
-                @endif
-                    <li class=""><a class="d-flex align-items-center" href="dashboard-ecommerce.html"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="eCommerce">eCommerce</span></a>
-                    </li>
-                    <li class=""><a class="d-flex align-items-center" href="dashboard-ecommerce.html"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="eCommerce">eCommerce</span></a>
-                    </li>
+                    @if (Auth::check() && Auth::user()->role == 'recruiter')
+                        <li><a class="d-flex align-items-center" href="{{ route('posting.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Analytics">Posting</span></a>
+                        </li>
+                    @endif
+                    @if (Auth::check() && Auth::user()->role == 'user')
+                        <li class=""><a class="d-flex align-items-center" href="{{ route('cari-pekerjaan') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="eCommerce">Cari Lowongan</span></a>
+                        </li>
+                        <li class=""><a class="d-flex align-items-center" href="{{ route('list-lamaran') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="eCommerce">Lamaran Kerja</span></a>
+                        </li>
+                    @endif
                 </ul>
             </li>
 
 
-            
+
             {{-- <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>

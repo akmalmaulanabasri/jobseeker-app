@@ -13,13 +13,14 @@ class LamaranController extends Controller
 {
     public function index()
     {
-        $postings = Posting::all();
+        $postings = Posting::where('is_paid', true)->where('is_active', true)->get();
         return view('landing.view', compact('postings'));
     }
 
     public function showPekerjaan($id)
     {
         $posting = Posting::find($id);
+
 
         if (!$posting) {
             abort(404, 'Posting not found');
@@ -36,7 +37,7 @@ class LamaranController extends Controller
 
     // app/Http/Controllers/LamaranController.php
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'posting_id' => 'required|exists:postings,id',
@@ -69,6 +70,18 @@ class LamaranController extends Controller
         } else {
             return redirect()->route('dashboard')->with('error', 'Postingan tidak ditemukan.');
         }
-        return redirect()->route('dashboard')->with('success', 'Lamaran berhasil dikirim');
+        return redirect()->route('list-lamaran')->with('success', 'Lamaran berhasil dikirim');
+    }
+
+    public function indexPelamar($id)
+    {
+        $lamarans = Lamaran::where('is_paid', true)->where('posting_id', $id)->get();
+        return view('daftar-pelamar.view', compact('lamarans'));
+    }
+
+    public function listLamaran()
+    {
+        $listLamarans = Lamaran::all();
+        return view('list-lamaran.view', compact('listLamarans'));
     }
 }

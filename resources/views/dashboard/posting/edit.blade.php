@@ -23,8 +23,8 @@
             </div>
             <div class="mb-3">
                 <label for="gaji" class="form-label">Gaji</label>
-                <input type="number" step="0.01" class="form-control" id="gaji" name="gaji" value="{{ $posting->gaji }}"
-                    required>
+                <input type="number" step="0.01" class="form-control" id="gaji" name="gaji"
+                    value="{{ $posting->gaji }}" required>
             </div>
             <div class="mb-3">
                 <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
@@ -55,6 +55,26 @@
                 <label for="cara_menghubungi" class="form-label">Cara Menghubungi</label>
                 <input type="text" class="form-control" id="cara_menghubungi" name="cara_menghubungi"
                     value="{{ $posting->cara_menghubungi }}" required>
+            </div>
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-6 d-flex ">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="0" name="is_active"
+                                id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Non Aktifkan
+                            </label>
+                        </div>
+                        <div class="form-check mx-2">
+                            <input class="form-check-input" type="checkbox" value="1" name="is_active"
+                                id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Aktifkan
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Perbarui</button>
         </form>

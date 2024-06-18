@@ -20,4 +20,9 @@ class Posting extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class, 'posting_id', 'id');
+    }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LamaranController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\PostingController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +41,11 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/cari-pekerjaan', [LamaranController::class, 'index'])->name('cari-pekerjaan')->middleware('auth');
     Route::get('/show-pekerjaan/{id}', [LamaranController::class, 'showPekerjaan'])->name('show-pekerjaan')->middleware('auth');
     Route::get('/create-pekerjaan/{id}', [LamaranController::class, 'createPekerjaan'])->name('create-pekerjaan')->middleware('auth');
-    Route::post('/auth-pekerjaan', [LamaranController::class, 'create'])->name('auth-pekerjaan')->middleware('auth');
+    Route::post('/auth-pekerjaan', [LamaranController::class, 'store'])->name('auth-pekerjaan')->middleware('auth');
+
+    Route::get('/pelamar/{id}', [LamaranController::class, 'indexPelamar'])->name('pelamar')->middleware('auth');
+    Route::get('/list-lamaran', [LamaranController::class, 'listLamaran'])->name('list-lamaran')->middleware('auth');
+    Route::get('/review', [ReviewController::class, 'store'])->name('review')->middleware('auth');
 });
 
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');

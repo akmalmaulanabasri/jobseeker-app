@@ -20,6 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ($postings as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -28,6 +29,9 @@
                             <td>{{ $item->gaji }}</td>
                             <td>{{ $item->jenis_pekerjaan }}</td>
                             <td>
+                                @if (!$item->is_paid)
+                                    <a class="btn btn-danger btn-sm">Bayar</a>
+                                @endif
                                 <a href="{{ route('posting.show', $item->id) }}" class="btn btn-info btn-sm">Detail</a>
                                 <a href="{{ route('posting.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('posting.destroy', $item->id) }}" method="POST"
@@ -36,6 +40,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                 </form>
+                                <a href="{{ route('pelamar', $item->id) }}" class="btn btn-warning btn-sm">Pelamar</a>
                             </td>
                         </tr>
                     @endforeach

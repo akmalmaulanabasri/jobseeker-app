@@ -80,6 +80,7 @@ class PostingController extends Controller
             'persyaratan_dan_kualifikasi' => 'required|string',
             'jenis_pekerjaan' => 'required|in:kontrak,part time,full time',
             'cara_menghubungi' => 'required|string|max:255',
+            'is_active' => 'required|boolean'
         ]));
 
         return redirect()->route('posting.index')->with('success', 'Postingan berhasil diperbarui');

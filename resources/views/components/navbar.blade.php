@@ -175,7 +175,7 @@
                             <div class="badge rounded-pill badge-light-primary">6 New</div>
                         </div>
                     </li>
-                    
+
                     <li class="scrollable-container media-list">
                         @foreach (auth()->user()->notifications as $notification)
                     <li>
@@ -275,10 +275,15 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a class="dropdown-item"
                     href="{{ route('profile') }}"><i class="me-50" data-feather="user"></i>
-                    Profile</a><a class="dropdown-item" href="app-email.html"><i class="me-50"
-                        data-feather="mail"></i> Inbox</a><a class="dropdown-item" href="app-todo.html"><i
-                        class="me-50" data-feather="check-square"></i> Task</a><a class="dropdown-item"
-                    href="app-chat.html"><i class="me-50" data-feather="message-square"></i> Chats</a>
+                    Profile</a>
+                @if (Auth::check() && Auth::user()->role == 'user')
+                    <a class="dropdown-item" href="{{ route('list-lamaran') }}"><i class="me-50"
+                            data-feather="mail"></i> Lamaran Kerja</a>
+                @endif
+                <a class="dropdown-item" href="#"><i class="me-50" data-feather="check-square"></i>
+                    Task</a><a class="dropdown-item" href="app-chat.html"><i class="me-50"
+                        data-feather="message-square"></i>
+                    Chats</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="page-account-settings.html"><i
                         class="me-50" data-feather="settings"></i>
                     Settings</a><a class="dropdown-item" href="page-pricing.html"><i class="me-50"
