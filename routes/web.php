@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LamaranController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\PostingController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SimpanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,14 +22,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('landing');
+Route::get('/welcome', [Controller::class, 'welcome'])->name('landing');
+Route::get('/', [ViewController::class, 'landingPostinga'])->name('cari-lowongan')->middleware('auth');
+Route::get('/detail-postingan/{id}', [ViewController::class, 'detailPostinga'])->name('detail-postingan')->middleware('auth');
+Route::get('/create-lamaran/{id}', [ViewController::class, 'createLamaran'])->name('create-lamaran')->middleware('auth');
+Route::get('/list-lamaran-landing', [ViewController::class, 'listLamaranLanding'])->name('list-lamaran-landing')->middleware('auth');
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
     })->name('dashboard')->middleware('auth');
+
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
     Route::patch('/edit-profile/{id}', [UserController::class, 'edit'])->name('edit-profile')->middleware('auth');
@@ -45,7 +51,10 @@ Route::prefix('dashboard')->group(function () {
 
     Route::get('/pelamar/{id}', [LamaranController::class, 'indexPelamar'])->name('pelamar')->middleware('auth');
     Route::get('/list-lamaran', [LamaranController::class, 'listLamaran'])->name('list-lamaran')->middleware('auth');
-    Route::get('/review', [ReviewController::class, 'store'])->name('review')->middleware('auth');
+    Route::get('/review/{id}', [ReviewController::class, 'index'])->name('review')->middleware('auth');
+    Route::post('/create-review', [ReviewController::class, 'store'])->name('create-review')->middleware('auth');
+
+    Route::post('/simpan-lamaran', [SimpanController::class, 'store'])->name('simpan-lamaran')->middleware('auth');
 });
 
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');

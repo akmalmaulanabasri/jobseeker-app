@@ -46,6 +46,7 @@
                                     </div>
                                     <a href="{{ route('create-pekerjaan', $posting->id) }}" class="btn btn-primary">Lamar
                                         Pekerjaan</a>
+                                    <a href="#" class="btn btn-primary">Simpan</a>
                                     {{-- <form action="{{ route('create-pekerjaan', $posting->id) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">Lamar Pekerjaan</button>

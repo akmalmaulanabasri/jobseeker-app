@@ -39,8 +39,18 @@ class UserController extends Controller
 
         $user = $request->only('email', 'password');
 
+        // if (Auth::attempt($user)) {
+        //     return redirect('dashboard')->with('toast_success', 'Andap Berhasil Login');
+        // }
+
+        // return redirect('login')->with('toast_error', 'Anda Gagal Login');
         if (Auth::attempt($user)) {
-            return redirect('dashboard')->with('toast_success', 'Andap Berhasil Login');
+            $user = Auth::user();
+            if ($user->role == 'user') {
+                return redirect('/')->with('toast_success', 'Anda Berhasil Login');
+            } elseif ($user->role == 'rekrutmen') {
+                return redirect('dashboard')->with('toast_success', 'Anda Berhasil Login');
+            }
         }
 
         return redirect('login')->with('toast_error', 'Anda Gagal Login');

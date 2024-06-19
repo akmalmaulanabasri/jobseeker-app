@@ -108,11 +108,22 @@
                                 @yield('content')
 
                                 <p class="text-center mt-2">
-                                    <span>New on our platform?</span>
-                                    <a href="page-auth-register-v1.html">
+                                    <span>Create an account</span>
+                                    {{-- <a href="#">
                                         <span>Create an account</span>
-                                    </a>
+                                    </a> --}}
                                 </p>
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-5">
+                                        <a href="{{ route('register', 'recruiter') }}"
+                                            class="btn btn-primary w-100">Rekruter</a>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <a href="{{ route('register', 'user') }}"
+                                            class="btn btn-primary w-100">Pencari
+                                        </a>
+                                    </div>
+                                </div>
 
                                 <div class="divider my-2">
                                     <div class="divider-text">or</div>

@@ -21,8 +21,8 @@ class Posting extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function review()
+    public function simpan()
     {
-        return $this->hasMany(Review::class, 'posting_id', 'id');
+        return $this->hanMany(Simpan::class, 'simpan_id', 'id');
     }
 }

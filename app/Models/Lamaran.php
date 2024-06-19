@@ -28,6 +28,13 @@ class Lamaran extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function review()
+    {
+        return $this->belongsTo(Review::class, 'lamaran_id', 'id');
+    }
+
+
+
     // public function payment()
     // {
     //     return $this->hasOne(Payment::class, 'lamaran_id', 'id');

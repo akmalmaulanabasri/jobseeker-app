@@ -2,27 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lamaran;
+use App\Models\Posting;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+
+    public function index($id)
+    {
+        $lamaran = Lamaran::find($id);
+        return view('review.view', compact('lamaran'));
+    }
+
+
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required',
-            'posting_id' => 'required',
+            'lamaran_id' => 'required',
             'rating' => 'required',
             'comment' => 'required|string|max:255',
         ]);
 
         $review = new Review();
-        $review->user_id = auth()->id();
-        $review->posting_id = $request->posting_id;
+        $review->lamaran_id = $request->lamaran_id;
         $review->rating = $request->rating;
         $review->comment = $request->comment;
         $review->save();
 
-        return response()->json($review, 201);
+        return redirect('dashboard')->with('success', 'Review has been added successfully');
     }
 }

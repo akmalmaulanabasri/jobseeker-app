@@ -15,13 +15,8 @@ class Review extends Model
         'comment'
     ];
 
-    public function user()
+    public function lamaran()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
-
-    public function posting()
-    {
-        return $this->belongsTo(Posting::class, 'posting_id', 'id');
+        return $this->belongsTo(Lamaran::class, 'lamaran_id', 'id');
     }
 }

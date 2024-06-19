@@ -16,7 +16,7 @@
                             <th>Nomor Telepon</th>
                             <th>Email</th>
                             <th>Pesan Lamaran</th>
-                            {{-- <th>Aksi</th> --}}
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,18 +27,18 @@
                                 <td>{{ $item->nomor_telepon }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->pesan_lamaran }}</td>
-                                {{-- <td>
-                            @if (!$item->is_paid)
+                                <td>
+                                    {{-- @if (!$item->is_paid)
                                 <a class="btn btn-danger btn-sm">Bayar</a>
-                                @endif
-                            <a href="{{ route('posting.show', $item->id) }}" class="btn btn-info btn-sm">Detail</a>
-                            <a href="{{ route('posting.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                @endif --}}
+                                    <a href="{{ route('review', $item->id) }}" class="btn btn-success btn-sm">Review</a>
+                                    {{-- <a href="{{ route('posting.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="{{ route('posting.destroy', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                            </form>
-                        </td> --}}
+                            </form> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
