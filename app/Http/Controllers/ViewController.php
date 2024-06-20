@@ -50,9 +50,18 @@ class ViewController extends Controller
 
     public function listLamaranLanding()
     {
-        $listLamarans = Lamaran::all();
+        $listLamarans = Lamaran::where('is_paid', 0)->where('user_id', Auth::user()->id)->get();
         return view('landing.lamaran.list_lamaran', compact('listLamarans'));
     }
+
+    public function bayarLamaran($id)
+    {
+        Lamaran::where('id', $id)->update([
+            'is_paid' => 1
+        ]);
+        return redirect()->route('cari-lowongan')->with('success', 'Lamaran berhasil dibayar');
+    }
+
     public function profileUser()
     {
         $user = Auth::user();

@@ -47,7 +47,7 @@ class UserController extends Controller
         if (Auth::attempt($user)) {
 
             if (Auth::user()->role == 'user') {
-                return redirect('/')->with('toast_success', 'Anda Berhasil Login');
+                return redirect()->route('cari-lowongan')->with('toast_success', 'Anda Berhasil Login');
             } elseif (Auth::user()->role == 'recruiter') {
                 return redirect('dashboard')->with('toast_success', 'Anda Berhasil Login');
             }

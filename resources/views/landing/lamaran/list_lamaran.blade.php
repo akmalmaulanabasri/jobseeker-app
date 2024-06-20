@@ -37,7 +37,8 @@
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->pesan_lamaran }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-warning btn-sm">Bayar</a>
+                                                <a href="{{ route('lamaran.bayar', $item->id) }}"
+                                                    class="btn btn-warning btn-sm">Bayar</a>
                                             </td>
                                         </tr>
                                     @endforeach

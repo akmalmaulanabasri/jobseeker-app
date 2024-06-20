@@ -22,11 +22,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', [Controller::class, 'welcome'])->name('landing');
-Route::get('/', [ViewController::class, 'landingPostinga'])->name('cari-lowongan')->middleware('auth');
-Route::get('/detail-postingan/{id}', [ViewController::class, 'detailPostinga'])->name('detail-postingan')->middleware('auth');
-Route::get('/create-lamaran/{id}', [ViewController::class, 'createLamaran'])->name('create-lamaran')->middleware('auth');
-Route::get('/list-lamaran-landing', [ViewController::class, 'listLamaranLanding'])->name('list-lamaran-landing')->middleware('auth');
+Route::prefix('user')->group(function () {
+    Route::get('/welcome', [Controller::class, 'welcome'])->name('landing');
+    Route::get('/', [ViewController::class, 'landingPostinga'])->name('cari-lowongan');
+    Route::get('/detail-postingan/{id}', [ViewController::class, 'detailPostinga'])->name('detail-postingan')->middleware('auth');
+    Route::get('/create-lamaran/{id}', [ViewController::class, 'createLamaran'])->name('create-lamaran')->middleware('auth');
+    Route::get('/list-lamaran-landing', [ViewController::class, 'listLamaranLanding'])->name('list-lamaran-landing')->middleware('auth');
+    Route::get('/profile-user', [ViewController::class, 'profileUser'])->name('profile-user')->middleware('auth');
+    Route::patch('/edit-profile-user/{id}', [ViewController::class, 'edit'])->name('edit-profile-user')->middleware('auth');
+    Route::get('/simpan-lamaran-user', [ViewController::class, 'simpanLamaran'])->name('simpan-lamaran-user')->middleware('auth');
+    Route::post('/simpan-lamaran', [SimpanController::class, 'store'])->name('simpan-lamaran')->middleware('auth');
+    Route::delete('/simpan-lamaran-delete/{id}', [SimpanController::class, 'destroy'])->name('simpan-lamaran-delete')->middleware('auth');
+    Route::get('lamaran/bayar/{id}', [ViewController::class, 'bayarLamaran'])->name('lamaran.bayar')->middleware('auth');
+
+});
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
