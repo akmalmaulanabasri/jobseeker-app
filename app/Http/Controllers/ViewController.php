@@ -6,13 +6,18 @@ use App\Models\Lamaran;
 use App\Models\Posting;
 use App\Models\Simpan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViewController extends Controller
 {
     public function landingPostinga()
     {
         $postings = Posting::where('is_paid', true)->where('is_active', true)->get();
-        $simpan = Simpan::all();
+        if (Auth::check()) {
+            $simpan = Simpan::where('user_id', auth()->user()->id)->get();
+        } else {
+            $simpan = [];
+        }
         return view('landing.postingan_landing', compact('postings', 'simpan'));
     }
 

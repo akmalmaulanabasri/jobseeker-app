@@ -58,7 +58,9 @@
     <div class="drag-target"></div>
 
 
+
     <x-footer />
+    <x-alert />
 </body>
 
 </html>

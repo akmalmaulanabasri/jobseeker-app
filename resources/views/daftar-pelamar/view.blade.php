@@ -3,9 +3,8 @@
 @section('dashboard')
     @if (Auth::user()->role == 'recruiter')
         <div class="app-content content">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
                 <h1>Daftar Pelamar</h1>
-                {{-- <a href="{{ route('posting.create') }}" class="btn btn-primary">Tambah Pekerjaan Baru</a> --}}
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">

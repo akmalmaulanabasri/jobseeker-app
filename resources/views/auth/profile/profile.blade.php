@@ -4,7 +4,7 @@
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper container-xxl p-0">
+        <div class="content-wrapper container-fluid p-0">
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
@@ -33,7 +33,7 @@
                                     alt="User Profile Image" />
                                 <!--/ profile cover photo -->
 
-                                <div class="position-relative">
+                                <div class="position-relative ms-3 mt-3">
                                     <!-- profile picture -->
                                     <div class="profile-img-container d-flex align-items-center">
                                         <div class="profile-img">
@@ -42,7 +42,8 @@
                                                     alt="Card image" width="200" />
                                             @else
                                                 <img src="{{ asset('/storage/image/' . $user->profile_picture) }}"
-                                                    class="rounded img-fluid" alt="Card image" width="200" />
+                                                    style="object-fit: cover" alt="Card image" width="200"
+                                                    height="200" />
                                             @endif
                                         </div>
                                         <!-- profile title -->
@@ -54,7 +55,7 @@
                                 </div>
 
                                 <!-- tabs pill -->
-                                <div class="profile-header-nav">
+                                <div class="profile-header-nav ms-3 mb-1">
                                     <!-- navbar -->
                                     <nav
                                         class="navbar navbar-expand-md navbar-light justify-content-end justify-content-md-between w-100">
@@ -91,7 +92,7 @@
                     <section id="profile-info">
                         <div class="row">
                             <!-- left profile info section -->
-                            <div class="col-lg-4 col-12 order-2 order-lg-4">
+                            <div class="col-12">
                                 <!-- about -->
                                 <div class="card">
                                     <div class="card-body">

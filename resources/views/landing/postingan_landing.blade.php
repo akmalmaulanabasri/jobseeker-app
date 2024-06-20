@@ -16,41 +16,56 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid px-5 py-3">
-        <div class="col">
-            <div class="row">
+    <div class="container py-3">
+        <div class="row">
+            <div
+                class="
+                @auth col-md-6 @endauth
+                @guest col-md-4 @endguest
+                ">
+                <h3 class=" title">Lowongan Kerja</h3>
+                @foreach ($postings as $item)
+                    <div class="card my-2">
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{ $item->judul_pekerjaan }}
+                                <br />
+                                <small>{{ $item->lokasi_pekerjaan }}</small>
+                            </p>
+                            @if (Auth::check())
+                                <a href="{{ route('detail-postingan', $item->id) }}" class="btn btn-primary">Detail
+                                    Lamaran</a>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-primary">Detail
+                                    Lamaran</a>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            @auth
                 <div class="col-md-6">
-                    <h3 class=" title">Lowongan Kerja</h3>
-                    @foreach ($postings as $item)
+                    <h3 class="title">Lowongan Kerja tersimpan</h3>
+                    @foreach ($simpan as $item)
                         <div class="card my-2">
                             <div class="card-body">
-                                <p class="card-text">{{ $item->judul_pekerjaan }}</p>
-                                <small>{{ $item->lokasi_pekerjaan }}</small><br>
+                                <p class="card-text">
+                                    {{ $item->posting->judul_pekerjaan }}
+                                    <br />
+                                    <small>{{ $item->posting->lokasi_pekerjaan }}</small>
+                                </p>
                                 @if (Auth::check())
-                                    <a href="{{ route('detail-postingan', $item->id) }}" class="btn btn-primary my-2">Detail
+                                    <a href="{{ route('detail-postingan', $item->posting->id) }}" class="btn btn-primary">Detail
                                         Lamaran</a>
                                 @else
-                                    <a href="{{ route('login') }}" class="btn btn-primary my-2">Detail
+                                    <a href="{{ route('login') }}" class="btn btn-primary">Detail
                                         Lamaran</a>
                                 @endif
                             </div>
                         </div>
                     @endforeach
                 </div>
-                <div class="col-md-6">
-                    <h3 class="title">Lowongan Kerja tersimpan</h3>
-                    @foreach ($simpan as $item)
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="card-text">{{ $item->posting->judul_pekerjaan }}</p>
-                                <small>{{ $item->posting->lokasi_pekerjaan }}</small><br>
-                                <a href="#" class="btn btn-primary my-2">Detail
-                                    Lamaran</a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+            @endauth
         </div>
     </div>
 @endsection

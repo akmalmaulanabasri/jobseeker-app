@@ -11,22 +11,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/welcome', [Controller::class, 'welcome'])->name('landing');
-Route::get('/', [ViewController::class, 'landingPostinga'])->name('cari-lowongan')->middleware('auth');
-Route::get('/detail-postingan/{id}', [ViewController::class, 'detailPostinga'])->name('detail-postingan')->middleware('auth');
-Route::get('/create-lamaran/{id}', [ViewController::class, 'createLamaran'])->name('create-lamaran')->middleware('auth');
-Route::get('/list-lamaran-landing', [ViewController::class, 'listLamaranLanding'])->name('list-lamaran-landing')->middleware('auth');
+Route::get('/', [ViewController::class, 'landingPostinga'])->name('landing');
+Route::get('/detail-postingan/{id}', [ViewController::class, 'detailPostinga'])->name('detail-postingan');
+Route::get('/create-lamaran/{id}', [ViewController::class, 'createLamaran'])->name('create-lamaran');
+Route::get('/list-lamaran-landing', [ViewController::class, 'listLamaranLanding'])->name('list-lamaran-landing');
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
@@ -43,6 +31,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/create-keterampilan', [ExperienceController::class, 'createKetampilan'])->name('create-keterampilan')->middleware('auth');
     Route::post('/skill', [SkillController::class, 'create'])->name('skill')->middleware('auth');
     Route::resource('posting', PostingController::class)->middleware('auth');
+    Route::get('posting/bayar/{id}', [PostingController::class, 'bayar'])->name('posting.bayar')->middleware('auth');
 
     Route::get('/cari-pekerjaan', [LamaranController::class, 'index'])->name('cari-pekerjaan')->middleware('auth');
     Route::get('/show-pekerjaan/{id}', [LamaranController::class, 'showPekerjaan'])->name('show-pekerjaan')->middleware('auth');
