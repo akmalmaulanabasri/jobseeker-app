@@ -76,14 +76,14 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('cari-lowongan') }}">
-                            Cari lowongan
+                            Cari Lowongan
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('profile-user') }}">Lihat profil</a>
+                        <a class="nav-link" href="{{ route('profile-user') }}">Lihat Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('simpan-lamaran-user') }}">Lowonan Disimpan</a>
+                        <a class="nav-link" href="{{ route('simpan-lamaran-user') }}">Lowongan Disimpan</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Jelajahi perusahaan</a>
@@ -118,9 +118,11 @@
     <main class="flex-fill">
         @yield('landing')
     </main>
+
     <footer class="bg-light text-center p-3 mt-auto">
         <p>&copy; 2021 JobSeeker</p>
     </footer>
+    <x-alert />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

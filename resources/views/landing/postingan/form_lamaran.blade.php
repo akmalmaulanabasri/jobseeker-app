@@ -20,15 +20,18 @@
                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                         <div class="form-group mb-3">
                                             <label for="nama_lengkap">Nama Lengkap</label>
-                                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required>
+                                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"
+                                                required>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="nomor_telepon">Nomor Telpon</label>
-                                            <input type="number" class="form-control" id="nomor_telepon" name="nomor_telepon" required>
+                                            <label for="nomor_telepon">Nomor Telepon</label>
+                                            <input type="number" class="form-control" id="nomor_telepon"
+                                                name="nomor_telepon" required>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="email">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email" required>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                required>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="pesan_lamaran">Pesan Lamaran</label>
