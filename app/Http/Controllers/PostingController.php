@@ -86,9 +86,15 @@ class PostingController extends Controller
         return redirect()->route('posting.index')->with('success', 'Postingan berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function bayar($id)
+    {
+        Posting::where('id', $id)->update([
+            'is_paid' => 1
+        ]);
+
+        return redirect()->route('posting.index')->with('success', 'Postingan berhasil dibayar');
+    }
+
     public function destroy(Posting $posting)
     {
         $posting->delete();
