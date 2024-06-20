@@ -25,7 +25,8 @@ class SimpanController extends Controller
 
     public function destroy($id)
     {
+        // dd($id);
         Simpan::where('id', $id)->delete();
-        return redirect()->route('/')->with('suceess', 'Berhasil dihapus');
+        return redirect()->route('cari-lowongan')->with('suceess', 'Berhasil dihapus');
     }
 }

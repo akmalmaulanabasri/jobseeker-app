@@ -45,10 +45,10 @@ class UserController extends Controller
 
         // return redirect('login')->with('toast_error', 'Anda Gagal Login');
         if (Auth::attempt($user)) {
-            $user = Auth::user();
-            if ($user->role == 'user') {
+
+            if (Auth::user()->role == 'user') {
                 return redirect('/')->with('toast_success', 'Anda Berhasil Login');
-            } elseif ($user->role == 'rekrutmen') {
+            } elseif (Auth::user()->role == 'recruiter') {
                 return redirect('dashboard')->with('toast_success', 'Anda Berhasil Login');
             }
         }
@@ -163,6 +163,10 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('profile');
+        if (Auth::check() && Auth::user()->role == 'user') {
+            return redirect()->route('profile-user');
+        } else {
+            return redirect()->route('profile');
+        }
     }
 }

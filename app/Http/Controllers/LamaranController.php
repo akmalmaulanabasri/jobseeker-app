@@ -70,7 +70,7 @@ class LamaranController extends Controller
         } else {
             return redirect()->route('dashboard')->with('error', 'Postingan tidak ditemukan.');
         }
-        return redirect()->route('list-lamaran-landing')->with('success', 'Lamaran berhasil dikirim');
+        return redirect()->route('list-lamaran-landing')->with('success', 'Silahkan lanjutkan pembayaran');
     }
 
     public function indexPelamar($id)
