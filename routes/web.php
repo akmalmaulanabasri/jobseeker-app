@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('user')->group(function () {
+Route::prefix('/')->group(function () {
     Route::get('/welcome', [Controller::class, 'welcome'])->name('landing');
     Route::get('/', [ViewController::class, 'landingPostinga'])->name('cari-lowongan');
     Route::get('/detail-postingan/{id}', [ViewController::class, 'detailPostinga'])->name('detail-postingan')->middleware('auth');
