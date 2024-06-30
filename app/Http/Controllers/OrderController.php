@@ -14,7 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.order.index', [
+            'orders' => Order::all()
+        ]);
     }
 
     /**
@@ -84,7 +86,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('dashboard.order.show', compact('order'));
     }
 
     /**

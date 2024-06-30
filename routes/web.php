@@ -58,8 +58,8 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/create-pengalaman-kerja', [ExperienceController::class, 'createPengalamanKerja'])->name('create-pengalaman-kerja')->middleware('auth');
     Route::get('/create-keterampilan', [ExperienceController::class, 'createKetampilan'])->name('create-keterampilan')->middleware('auth');
     Route::post('/skill', [SkillController::class, 'create'])->name('skill')->middleware('auth');
-    Route::resource('posting', PostingController::class)->middleware('auth');
-    Route::get('posting/bayar/{id}', [PostingController::class, 'bayar'])->name('posting.bayar')->middleware('auth');
+    Route::resource('order', OrderController::class)->middleware('auth');
+    Route::get('order/bayar/{id}', [PostingController::class, 'bayar'])->name('order.bayar')->middleware('auth');
 
     Route::get('/cari-pekerjaan', [LamaranController::class, 'index'])->name('cari-pekerjaan')->middleware('auth');
     Route::get('/show-pekerjaan/{id}', [LamaranController::class, 'showPekerjaan'])->name('show-pekerjaan')->middleware('auth');
