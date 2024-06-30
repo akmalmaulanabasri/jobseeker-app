@@ -26,8 +26,46 @@ class ViewController extends Controller
         }
 
         $postings = $query->get();
-        $simpan = Simpan::all(); // Pastikan model Simpan telah di-import
+        $simpan = Simpan::all();
         return view('landing.postingan.postingan_landing', compact('postings', 'simpan'));
+    }
+
+    public function listWorkerPage(Request $request)
+    {
+        $workers = User::where('role', 'farmer')->where('is_available', true)->get();
+        return view('landing.worker.index', compact('workers'));
+    }
+
+    public function listJasa(Request $request)
+    {
+        $jasa = [
+            [
+                'nama' => 'Sanitasi Lahan',
+                'harga' => '187',
+            ],
+            [
+                'nama' => 'Pembenihan',
+                'harga' => '75',
+            ],
+            [
+                'nama' => 'Penanaman',
+                'harga' => '175',
+            ],
+            [
+                'nama' => 'Pemupukan',
+                'harga' => '362',
+            ],
+            [
+                'nama' => 'Pemeliharaan',
+                'harga' => '375',
+            ],
+            [
+                'nama' => 'Panen',
+                'harga' => '300',
+            ],
+        ];
+
+        return view('landing.jasa.index', compact('jasa'));
     }
 
     public function detailPostinga($id)
@@ -59,7 +97,7 @@ class ViewController extends Controller
         Lamaran::where('id', $id)->update([
             'is_paid' => 1
         ]);
-        return redirect()->route('cari-lowongan')->with('success', 'Lamaran berhasil dibayar');
+        return redirect()->route('home')->with('success', 'Lamaran berhasil dibayar');
     }
 
     public function profileUser()

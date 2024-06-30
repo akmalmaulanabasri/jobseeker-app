@@ -60,10 +60,10 @@ class LamaranController extends Controller
         // Dapatkan perekrut dari postingan pekerjaan
         $posting = Posting::find($request->posting_id);
         if ($posting) {
-            $recruiter = User::find($posting->user_id);
-            if ($recruiter) {
+            $farmer = User::find($posting->user_id);
+            if ($farmer) {
                 // Kirim notifikasi ke perekrut
-                $recruiter->notify(new LamaranDiterima($lamaran));
+                $farmer->notify(new LamaranDiterima($lamaran));
             } else {
                 return redirect()->route('dashboard')->with('error', 'Perekrut tidak ditemukan.');
             }

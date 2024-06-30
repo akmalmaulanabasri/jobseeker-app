@@ -20,9 +20,9 @@ class UserSeeder extends Seeder
                 'phone' => '0812345678',
                 'address' => 'Jl. Jalan No. 2',
                 'password' => bcrypt('admin'),
-                'description' => 'recruiter of the website',
+                'description' => 'farmer of the website',
                 'profile_picture' => '',
-                'role' => 'recruiter',
+                'role' => 'farmer',
             ],
             [
                 'name' => 'User',

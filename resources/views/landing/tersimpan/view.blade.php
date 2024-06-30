@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layout.landing')
 
 @section('landing')
     <div class="container-fluid px-5 py-3">

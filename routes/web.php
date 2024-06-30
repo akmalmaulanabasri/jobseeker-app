@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LamaranController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\PostingController;
 use App\Http\Controllers\ReviewController;
@@ -23,8 +24,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('/')->group(function () {
-    Route::get('/welcome', [Controller::class, 'welcome'])->name('landing');
-    Route::get('/', [ViewController::class, 'landingPostinga'])->name('cari-lowongan');
+    Route::get('/', [ViewController::class, 'listWorkerPage'])->name('home');
+    Route::get('/welcome', [ViewController::class, 'listWorkerPage'])->name('landing');
+    Route::get('/pekerja-tersedia', [ViewController::class, 'listWorkerPage'])->name('cari-pekerja');
+    Route::get('/jasa-tersedia', [ViewController::class, 'listJasa'])->name('cari-jasa');
+    Route::get('/order/{id}', [OrderController::class, 'create'])->name('pesan-pekerja')->middleware('auth');
+    Route::post('/order/{id}', [OrderController::class, 'store'])->name('pesan-pekerja')->middleware('auth');
+
+
     Route::get('/detail-postingan/{id}', [ViewController::class, 'detailPostinga'])->name('detail-postingan')->middleware('auth');
     Route::get('/create-lamaran/{id}', [ViewController::class, 'createLamaran'])->name('create-lamaran')->middleware('auth');
     Route::get('/list-lamaran-landing', [ViewController::class, 'listLamaranLanding'])->name('list-lamaran-landing')->middleware('auth');

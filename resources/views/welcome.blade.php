@@ -65,8 +65,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="{{ route('landing') }}">
-                <img src="https://seeklogo.com/images/K/kominfo-logo-DC4C2D403E-seeklogo.com.png" alt="JobStreet"
-                    height="30">
+                <img src="{{ asset('assets/image/logo.png') }}" alt="JobStreet" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,8 +74,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cari-lowongan') }}">
-                            Cari Lowongan
+                        <a class="nav-link" href="{{ route('home') }}">
+                            Cari petani
                         </a>
                     </li>
                     <li class="nav-item">
@@ -85,9 +84,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('simpan-lamaran-user') }}">Lowongan Disimpan</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="#">Jelajahi perusahaan</a>
-                    </li> --}}
                 </ul>
                 <div class="d-flex">
                     @if (Auth::check())

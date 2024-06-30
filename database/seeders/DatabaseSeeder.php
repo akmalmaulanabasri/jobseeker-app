@@ -24,18 +24,32 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('user'),
             'role' => 'user',
             'description' => 'User Description',
-            'profile_picture' => '1'
+            'profile_picture' => '1',
+            'is_available' => '1'
         ]);
-        
+
         User::create([
-            'name' => 'recruiter',
-            'email' => 'recruiter@gmail.com',
-            'phone' => '1234567890',
-            'address' => 'recruiter Address',
-            'password' => bcrypt('recruiter'),
-            'role' => 'recruiter',
-            'description' => 'recruiter Description',
-            'profile_picture' => '2'
+            'name' => 'Ujang Maman',
+            'email' => 'ujangmaman@gmail.com',
+            'phone' => '08772722',
+            'address' => 'Kampung sahara',
+            'password' => bcrypt('farmer'),
+            'role' => 'farmer',
+            'description' => 'Jago semua',
+            'profile_picture' => '2',
+            'is_available' => '1'
+        ]);
+
+        User::create([
+            'name' => 'Asep Baskom',
+            'email' => 'asepsedunia@gmail.com',
+            'phone' => '08772722',
+            'address' => 'Kampung jakarta',
+            'password' => bcrypt('user'),
+            'role' => 'user',
+            'description' => 'gacor kang',
+            'profile_picture' => '2',
+            'is_available' => '1'
         ]);
     }
 }

@@ -115,7 +115,7 @@
                                 </p>
                                 <div class="row justify-content-center">
                                     <div class="col-sm-5">
-                                        <a href="{{ route('register', 'recruiter') }}"
+                                        <a href="{{ route('register', 'farmer') }}"
                                             class="btn btn-primary w-100">Rekruter</a>
                                     </div>
                                     <div class="col-sm-5">

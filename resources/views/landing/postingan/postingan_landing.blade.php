@@ -1,11 +1,11 @@
-@extends('welcome')
+@extends('layout.landing')
 
 @section('landing')
     <div class="container-fluid bg-custom">
         <div class="search-container">
             <div class="row text-center p-5">
                 <div class="col-md-6 offset-md-3">
-                    <form action="{{ route('cari-lowongan') }}" method="GET" class="d-flex">
+                    <form action="{{ route('home') }}" method="GET" class="d-flex">
                         <input type="text" class="form-control me-2" name="search" placeholder="Cari Lowongan"
                             value="{{ request('search') }}">
                         <button type="submit" class="btn btn-primary">Cari</button>
@@ -16,7 +16,7 @@
     </div>
     <div class="container-fluid px-5 py-3">
         <div class="row">
-            <h3 class="title">Lowongan Kerja</h3>
+            <h3 class="title">Pekerja tersedia</h3>
             @foreach ($postings as $item)
                 <div class="col-md-3 my-2">
                     <div class="card my-2">

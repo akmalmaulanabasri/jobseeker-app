@@ -15,7 +15,7 @@ class SimpanController extends Controller
         ]);
 
         if (Simpan::where('user_id', $request->user_id)->where('posting_id', $request->posting_id)->exists()) {
-            return redirect()->route('cari-lowongan')->with('error', 'Postingan sudah disimpan');
+            return redirect()->route('landing')->with('error', 'Postingan sudah disimpan');
         }
 
         $simpan = new Simpan();
@@ -30,6 +30,6 @@ class SimpanController extends Controller
     {
         // dd($id);
         Simpan::where('id', $id)->delete();
-        return redirect()->route('cari-lowongan')->with('suceess', 'Berhasil dihapus');
+        return redirect()->route('landing')->with('suceess', 'Berhasil dihapus');
     }
 }

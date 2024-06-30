@@ -59,7 +59,7 @@
                     </span>
                 </a>
             </li>
-            @if (Auth::check() && Auth::user()->role == 'recruiter')
+            @if (Auth::check() && Auth::user()->role == 'farmer')
                 <li class=" nav-item">
                     <a class="d-flex align-items-center" href="{{ route('posting.index') }}">
                         <i data-feather="briefcase"></i>

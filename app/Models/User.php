@@ -49,11 +49,6 @@ class User extends Authenticatable
         return $this->hasMany(Simpan::class, 'user_id', 'id');
     }
 
-    // public function payment()
-    // {
-    //     return $this->hasMany(Payment::class, 'user_id', 'id');
-    // }
-
     /**
      * The attributes that should be hidden for serialization.
      *

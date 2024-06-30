@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,8 +18,9 @@ return new class extends Migration
             $table->text('address');
             $table->string('password');
             $table->text('description')->nullable();
+            $table->boolean('is_available')->default(false);
             $table->string('profile_picture')->nullable();
-            $table->enum('role', ['recruiter', 'user'])->default('user');
+            $table->enum('role', ['farmer', 'admin', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

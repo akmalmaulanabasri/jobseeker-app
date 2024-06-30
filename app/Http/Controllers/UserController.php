@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function register($role)
     {
-        if ($role !== 'recruiter' && $role !== 'user') {
+        if ($role !== 'farmer' && $role !== 'user') {
             return redirect()->route('landing');
         }
 
@@ -47,8 +47,8 @@ class UserController extends Controller
         if (Auth::attempt($user)) {
 
             if (Auth::user()->role == 'user') {
-                return redirect()->route('cari-lowongan')->with('toast_success', 'Anda Berhasil Login');
-            } elseif (Auth::user()->role == 'recruiter') {
+                return redirect()->route('home')->with('toast_success', 'Anda Berhasil Login');
+            } elseif (Auth::user()->role == 'farmer') {
                 return redirect('dashboard')->with('toast_success', 'Anda Berhasil Login');
             }
         }
@@ -65,7 +65,7 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     public function profile()
@@ -87,7 +87,7 @@ class UserController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        if ($role !== 'recruiter' && $role !== 'user') {
+        if ($role !== 'farmer' && $role !== 'user') {
             return redirect()->back();
         }
 

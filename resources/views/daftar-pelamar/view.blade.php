@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('dashboard')
-    @if (Auth::user()->role == 'recruiter')
+    @if (Auth::user()->role == 'farmer')
         <div class="app-content content">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h1>Daftar Pelamar</h1>
