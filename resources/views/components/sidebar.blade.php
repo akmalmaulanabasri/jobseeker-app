@@ -79,10 +79,10 @@
             @endif
             @if (Auth::check() && Auth::user()->role == 'farmer')
                 <li class=" nav-item">
-                    <a class="d-flex align-items-center" href="{{ route('posting.index') }}">
+                    <a class="d-flex align-items-center" href="{{ route('order.index') }}">
                         <i data-feather="briefcase"></i>
                         <span class="menu-title text-truncate" data-i18n="Documentation">
-                            Postingan anda
+                            Pesanan anda
                         </span>
                     </a>
                 </li>
@@ -90,7 +90,7 @@
             @if (Auth::check() && Auth::user()->role == 'user')
                 <li class=" nav-item"><a class="d-flex align-items-center" href="index.html"><i
                             data-feather="home"></i><span class="menu-title text-truncate"
-                            data-i18n="Dashboards">Pekerjaan</span><span
+                            data-i18n="Dashboards">Pesanan Anda</span><span
                             class="badge badge-light-warning rounded-pill ms-auto me-1">2</span></a>
                     <ul class="menu-content">
                         <li class=""><a class="d-flex align-items-center"
