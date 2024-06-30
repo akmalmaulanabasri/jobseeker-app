@@ -59,6 +59,24 @@
                     </span>
                 </a>
             </li>
+            @if (Auth::check() && Auth::user()->role == 'admin')
+                <li class="nav-item">
+                    <a class="d-flex align-items-center" href="{{ route('jasa.index') }}">
+                        <i data-feather="briefcase"></i>
+                        <span class="menu-title text-truncate" data-i18n="Documentation">
+                            Master data jasa
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center" href="{{ route('farmer.index') }}">
+                        <i data-feather="users"></i>
+                        <span class="menu-title text-truncate" data-i18n="Documentation">
+                            Daftar pekerja
+                        </span>
+                    </a>
+                </li>
+            @endif
             @if (Auth::check() && Auth::user()->role == 'farmer')
                 <li class=" nav-item">
                     <a class="d-flex align-items-center" href="{{ route('posting.index') }}">
@@ -75,9 +93,9 @@
                             data-i18n="Dashboards">Pekerjaan</span><span
                             class="badge badge-light-warning rounded-pill ms-auto me-1">2</span></a>
                     <ul class="menu-content">
-                        <li class=""><a class="d-flex align-items-center" href="{{ route('cari-pekerjaan') }}"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="eCommerce">Cari Lowongan</span></a>
+                        <li class=""><a class="d-flex align-items-center"
+                                href="{{ route('cari-pekerjaan') }}"><i data-feather="circle"></i><span
+                                    class="menu-item text-truncate" data-i18n="eCommerce">Cari Lowongan</span></a>
                         </li>
                         <li class=""><a class="d-flex align-items-center" href="{{ route('list-lamaran') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\JasaController;
 use App\Http\Controllers\LamaranController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SkillController;
@@ -57,7 +59,6 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/pengalaman-kerja', [ExperienceController::class, 'create'])->name('pengalaman-kerja')->middleware('auth');
     Route::get('/create-pengalaman-kerja', [ExperienceController::class, 'createPengalamanKerja'])->name('create-pengalaman-kerja')->middleware('auth');
     Route::get('/create-keterampilan', [ExperienceController::class, 'createKetampilan'])->name('create-keterampilan')->middleware('auth');
-    Route::post('/skill', [SkillController::class, 'create'])->name('skill')->middleware('auth');
     Route::resource('posting', PostingController::class)->middleware('auth');
     Route::get('posting/bayar/{id}', [PostingController::class, 'bayar'])->name('posting.bayar')->middleware('auth');
 
@@ -70,6 +71,10 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/list-lamaran', [LamaranController::class, 'listLamaran'])->name('list-lamaran')->middleware('auth');
     Route::get('/review/{id}', [ReviewController::class, 'index'])->name('review')->middleware('auth');
     Route::post('/create-review', [ReviewController::class, 'store'])->name('create-review')->middleware('auth');
+
+    Route::resource('jasa', JasaController::class)->middleware('auth');
+    Route::resource('farmer', FarmerController::class)->middleware('auth');
+
 });
 
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');

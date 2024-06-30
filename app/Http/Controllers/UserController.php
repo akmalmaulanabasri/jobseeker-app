@@ -38,22 +38,16 @@ class UserController extends Controller
         ]);
 
         $user = $request->only('email', 'password');
-
-        // if (Auth::attempt($user)) {
-        //     return redirect('dashboard')->with('toast_success', 'Andap Berhasil Login');
-        // }
-
-        // return redirect('login')->with('toast_error', 'Anda Gagal Login');
         if (Auth::attempt($user)) {
 
             if (Auth::user()->role == 'user') {
-                return redirect()->route('home')->with('toast_success', 'Anda Berhasil Login');
+                return redirect()->route('home')->with('success', 'Anda Berhasil Login');
             } elseif (Auth::user()->role == 'farmer') {
-                return redirect('dashboard')->with('toast_success', 'Anda Berhasil Login');
+                return redirect('dashboard')->with('success', 'Anda Berhasil Login');
             }
         }
 
-        return redirect('login')->with('toast_error', 'Anda Gagal Login');
+        return redirect('login')->with('error', 'Anda Gagal Login');
     }
 
     public function edit($id)
@@ -72,8 +66,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $pengalaman = Experience::where('user_id', $user->id)->get();
-        $keterampilan = Skill::where('user_id', $user->id)->get();
-        return view('auth.profile.profile', compact('user', 'pengalaman', 'keterampilan'));
+        return view('auth.profile.profile', compact('user', 'pengalaman'));
     }
 
     public function authRegister(Request $request, $role)
@@ -101,7 +94,7 @@ class UserController extends Controller
             'role' => $role,
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Anda Berhasil Register');
     }
 
     public function authUser(Request $request)

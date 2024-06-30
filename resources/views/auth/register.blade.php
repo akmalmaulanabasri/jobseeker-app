@@ -4,7 +4,7 @@
     <form class="auth-register-form mt-2" action="{{ route('auth-register', $role) }}" method="POST">
         @csrf
         <div class="mb-1">
-            <label for="register-name" class="form-label">Name</label>
+            <label for="register-name" class="form-label">Nama</label>
             <input type="text" class="form-control" id="register-name" name="name" placeholder="johndoe"
                 aria-describedby="register-name" tabindex="1" autofocus />
         </div>
@@ -14,12 +14,12 @@
                 aria-describedby="register-email" tabindex="2" />
         </div>
         <div class="mb-1">
-            <label for="register-phone" class="form-label">Phone</label>
+            <label for="register-phone" class="form-label">Nomor telepon</label>
             <input type="text" class="form-control" id="register-phone" name="phone" placeholder="08xxxxxxxxx"
                 aria-describedby="register-phone" tabindex="2" />
         </div>
         <div class="mb-1">
-            <label for="register-address" class="form-label">Address</label>
+            <label for="register-address" class="form-label">Alamat</label>
             <input type="text" class="form-control" id="register-address" name="address" placeholder="address"
                 aria-describedby="register-address" tabindex="2" />
         </div>
@@ -34,20 +34,6 @@
                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
             </div>
         </div>
-        <div class="mb-1">
-            <label for="register-desctiption" class="form-label">Desctiption</label>
-            <input type="text" class="form-control" id="register-desctiption" name="description"
-                placeholder="john@example.com" aria-describedby="register-desctiption" tabindex="2" />
-        </div>
-
-        <div class="mb-1">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="register-privacy-policy" tabindex="4" />
-                <label class="form-check-label" for="register-privacy-policy">
-                    I agree to <a href="#">privacy policy & terms</a>
-                </label>
-            </div>
-        </div>
-        <button class="btn btn-primary w-100" tabindex="5">Sign up</button>
+        <button class="btn btn-primary w-100" tabindex="5">Daftar</button>
     </form>
 @endsection
