@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->text('keterangan');
             $table->date('tanggal');
             $table->time('jam');
-            $table->enum('status', ['dipesan', 'dikonfirmasi', 'sedang_dikerjakan', 'pending_approve', 'selesai'])->default('dipesan');
+            $table->enum('status', ['dipesan', 'dikonfirmasi', 'sedang_dikerjakan', 'pending_approve', 'selesai', 'dibatalkan'])->default('dipesan');
             $table->timestamps();
         });
     }

@@ -3,8 +3,7 @@
 @section('dashboard')
     <div class="app-content content">
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <h1>Daftar Pekerjaan</h1>
-            <a href="{{ route('order.create') }}" class="btn btn-primary">Tambah Pekerjaan Baru</a>
+            <h1>Daftar pesanan anda</h1>
         </div>
 
 
@@ -23,12 +22,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @empty($orders)
+                            @empty(!$orders)
                                 <tr>
                                     <td colspan="6">
-                                        <div class="d-flex justify-content-center">
-                                            <div class="alert bg-danger text-center px-3 py-2">
-                                                <h5>Anda belum menawarkan pekerjaan apapun</h5>
+                                        <div class="d-flex justify-content-center w-100">
+                                            <div class="alert bg-danger text-center px-3 py-2 w-100">
+                                                <h5>Anda belum mendapatkan pekerjaan apapun</h5>
                                             </div>
                                         </div>
                                     </td>

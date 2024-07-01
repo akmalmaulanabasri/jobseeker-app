@@ -94,7 +94,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ route('profile-user') }}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ route('list-lamaran-landing') }}">Lamaran
+                                <li><a class="dropdown-item" href="{{ route('list-pesanan-landing') }}">Lamaran
                                         Kerja</a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                                 </li>

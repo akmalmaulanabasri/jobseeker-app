@@ -29,24 +29,9 @@ class User extends Authenticatable
         'role',
     ];
 
-    public function skill()
+    public function orderCountWhereUnpaid(): HasMany
     {
-        return $this->hasMany(Skill::class, 'user_id', 'id');
-    }
-
-    public function lamaran()
-    {
-        return $this->hasMany(Lamaran::class, 'user_id', 'id');
-    }
-
-    public function posting()
-    {
-        return $this->hasMany(Posting::class, 'user_id', 'id');
-    }
-
-    public function simpan()
-    {
-        return $this->hasMany(Simpan::class, 'user_id', 'id');
+        return $this->hasMany(Order::class)->where('status', 'dipesan');
     }
 
     /**

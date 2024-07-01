@@ -99,7 +99,7 @@
                         </li>
                         <li class=""><a class="d-flex align-items-center" href="{{ route('list-lamaran') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="eCommerce">Lamaran Kerja</span></a>
+                                    data-i18n="eCommerce">Pesanan anda</span></a>
                         </li>
                     </ul>
                 </li>

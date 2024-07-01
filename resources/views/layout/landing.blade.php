@@ -103,7 +103,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ route('profile-user') }}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ route('list-lamaran-landing') }}">Lamaran
+                                <li><a class="dropdown-item" href="{{ route('list-pesanan-landing') }}">Lamaran
                                         Kerja</a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                                 </li>
@@ -121,6 +121,16 @@
     </nav>
 
     <main class="flex-fill">
+        @auth
+            @if (count(Auth::user()->orderCountWhereUnpaid) > 0)
+                <div class="container py-3">
+                    <div class="alert alert-danger">
+                        <h3>Anda memiliki pesanan yang belum dibayar</h3>
+                        <a href="{{ route('list-pesanan-landing') }}" class="btn btn-danger">Lihat pesanan</a>
+                    </div>
+                </div>
+            @endif
+        @endauth
         @yield('landing')
     </main>
 

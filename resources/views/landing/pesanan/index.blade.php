@@ -21,24 +21,27 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Nomor Telepon</th>
-                                        <th>Email</th>
-                                        <th>Pesan Lamaran</th>
+                                        <th>Luas Lahan</th>
+                                        <th>Alamat</th>
+                                        <th>Jasa</th>
+                                        <th>Status</th>
+                                        <th>Keterangan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($listLamarans as $item)
+                                    @foreach ($orders as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->nama_lengkap }}</td>
-                                            <td>{{ $item->nomor_telepon }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->pesan_lamaran }}</td>
+                                            <td>{{ $item->luas_lahan }}</td>
+                                            <td>{{ $item->alamat }}</td>
+                                            <td>{{ $item->jasa }}</td>
+                                            <td>{{ $item->status }}</td>
+                                            <td>{{ $item->keterangan }}</td>
                                             <td>
-                                                <a href="{{ route('lamaran.bayar', $item->id) }}"
-                                                    class="btn btn-warning btn-sm">Bayar</a>
+                                                @if (!$item->is_paid)
+                                                    <a id="pay-button" class="btn btn-success btn-sm">Bayar</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -50,4 +53,5 @@
             </div>
         @endif
     </div>
+    <x-snap snapToken={{ $snapToken }} />
 @endsection

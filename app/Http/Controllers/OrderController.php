@@ -78,7 +78,7 @@ class OrderController extends Controller
             'status' => 'dipesan',
         ]);
 
-        return redirect()->route('landing')->with('success', 'Order berhasil dibuat');
+        return redirect()->route('landing')->with('success', 'Order berhasil dibuat, silahkan melakukan pembayaran di halaman pesanan anda.');
     }
 
     /**

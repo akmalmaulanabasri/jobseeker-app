@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lamaran;
+use App\Models\Order;
 use App\Models\Posting;
 use App\Models\Simpan;
 use App\Models\User;
@@ -88,8 +89,20 @@ class ViewController extends Controller
 
     public function listLamaranLanding()
     {
-        $listLamarans = Lamaran::where('is_paid', 0)->where('user_id', Auth::user()->id)->get();
-        return view('landing.lamaran.list_lamaran', compact('listLamarans'));
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-cnrWNrti9y9tu7nzRg5KpheT';
+        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+        $orders = Order::where('user_id', Auth::id())->get();
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => 10000,
+            )
+        );
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        return view('landing.pesanan.index', compact('orders', 'snapToken'));
     }
 
     public function bayarLamaran($id)
