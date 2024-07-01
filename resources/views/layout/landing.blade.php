@@ -68,6 +68,7 @@
         .square {
             object-fit: cover;
             aspect-ratio: 1/1;
+            height: 300px;
         }
     </style>
 </head>

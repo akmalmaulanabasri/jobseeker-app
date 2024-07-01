@@ -8,18 +8,18 @@
                     <div class="card-header text-center bg-dark text-white py-4">
                         @if ($worker->profile_picture == null)
                             <img src="{{ asset('assets/image/profile.jpg') }}"
-                                class="rounded-circle img-thumbnail border-0 shadow-sm" alt="Profile image" width="150"
+                                class="rounded-circle border-0 object-fit-cover shadow-sm" alt="Profile image" width="150"
                                 height="150" />
                         @else
                             <img src="{{ asset('/storage/image/' . $worker->profile_picture) }}"
-                                class="rounded-circle img-thumbnail border-0 shadow-sm" alt="Profile image" width="150"
-                                height="150" />
+                                class="rounded-circle object-fit-cover border-0 shadow-sm" alt="Profile image"
+                                width="150" height="150" />
                         @endif
                     </div>
                     <div class="card-body bg-white text-center">
                         <h3 class="card-title">{{ $worker->name }}</h3>
                         <p class="card-text text-muted">{{ $worker->role }}</p>
-                        
+
                         <ul class="list-group list-group-flush text-start">
                             <li class="list-group-item"><strong>Nama Lengkap:</strong> {{ $worker->name }}</li>
                             <li class="list-group-item"><strong>Email:</strong> {{ $worker->email }}</li>

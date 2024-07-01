@@ -20,7 +20,7 @@
                             <!-- Gambar Pekerja -->
                             <div class="col-md-4">
                                 <img src="{{ asset('storage/image/' . $item->profile_picture) }}"
-                                    class="img-fluid rounded-start" alt="{{ $item->name }}">
+                                    class="rounded-start square" alt="{{ $item->name }}">
                             </div>
 
                             <!-- Detail Pekerja -->
@@ -47,8 +47,9 @@
                             </div>
                         </div>
                         <!-- Tombol Like dan Rating di Kanan Atas -->
-                        <div class="btn-container position-absolute top-0 end-0 m-2 p-2 bg-white rounded shadow d-flex align-items-center">
-                            <i class="bi bi-star-fill text-warning icon-large me-2"></i> 
+                        <div
+                            class="btn-container position-absolute top-0 end-0 m-2 p-2 bg-white rounded shadow d-flex align-items-center">
+                            <i class="bi bi-star-fill text-warning icon-large me-2"></i>
                             <span class="text-muted fs-5">5</span>
                             <i class="bi bi-heart-fill text-danger icon-large ms-3"></i>
                         </div>

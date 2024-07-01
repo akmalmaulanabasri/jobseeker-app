@@ -24,6 +24,7 @@
                                         <th>Luas Lahan</th>
                                         <th>Alamat</th>
                                         <th>Jasa</th>
+                                        <th>Total Harga</th>
                                         <th>Status</th>
                                         <th>Keterangan</th>
                                         <th>Aksi</th>
@@ -35,12 +36,14 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->luas_lahan }}</td>
                                             <td>{{ $item->alamat }}</td>
-                                            <td>{{ $item->jasa }}</td>
+                                            <td>{{ $item->jasa->nama }}</td>
+                                            <td>Rp{{ number_format($item->jasa->harga * $item->luas_lahan, 2) }}</td>
                                             <td>{{ $item->status }}</td>
                                             <td>{{ $item->keterangan }}</td>
                                             <td>
                                                 @if (!$item->is_paid)
-                                                    <a id="pay-button" class="btn btn-success btn-sm">Bayar</a>
+                                                    <a id="pay-button-{{ $item->id }}"
+                                                        class="btn btn-success btn-sm">Bayar</a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -53,5 +56,22 @@
             </div>
         @endif
     </div>
-    <x-snap snapToken={{ $snapToken }} />
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-karnP2t_cZEsW-It"></script>
+    @foreach ($orders as $item)
+        <script type="text/javascript">
+            document.getElementById('pay-button-{{ $item->id }}').onclick = function() {
+                snap.pay('<?= $item->midtrans_token ?>', {
+                    onSuccess: function(result) {
+                        document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    },
+                    onPending: function(result) {
+                        document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    },
+                    onError: function(result) {
+                        document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    }
+                });
+            };
+        </script>
+    @endforeach
 @endsection

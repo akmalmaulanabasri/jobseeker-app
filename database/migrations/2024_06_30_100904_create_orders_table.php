@@ -17,8 +17,10 @@ return new class extends Migration {
             $table->string('luas_lahan');
             $table->text('alamat');
             $table->text('foto_lahan');
-            $table->text('jasa');
+            $table->string('jasa_id');
             $table->text('keterangan');
+            $table->text('midtrans_token')->nullable();
+            $table->text('midtrans_id')->nullable();
             $table->date('tanggal');
             $table->time('jam');
             $table->enum('status', ['dipesan', 'dikonfirmasi', 'sedang_dikerjakan', 'pending_approve', 'selesai', 'dibatalkan'])->default('dipesan');

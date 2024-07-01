@@ -15,8 +15,14 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $orders = Order::where('worker_id', Auth::id())->get();
+        foreach ($orders as $order) {
+            $order->gaji = $order->jasa->harga * $order->luas_lahan;
+            $order->total = $order->gaji - ($order->gaji * $order->jasa->biaya_admin / 100);
+        }
+
         return view('dashboard.order.index', [
-            'orders' => Order::all()
+            'orders' => $orders,
         ]);
     }
 
@@ -47,7 +53,7 @@ class OrderController extends Controller
             'luas_lahan' => $request->luas,
             'alamat' => $request->alamat,
             'foto_lahan' => $request->foto_lahan,
-            'jasa' => $request->jasa,
+            'jasa_id' => $request->jasa,
             'keterangan' => $request->keterangan,
             'tanggal' => $request->tanggal,
             'jam' => $request->jam,

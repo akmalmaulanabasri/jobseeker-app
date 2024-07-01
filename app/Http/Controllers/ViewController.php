@@ -87,22 +87,28 @@ class ViewController extends Controller
         return view('landing.postingan.form_lamaran', compact('posting'));
     }
 
-    public function listLamaranLanding()
+    public function listPesananAnda()
     {
         \Midtrans\Config::$serverKey = 'SB-Mid-server-cnrWNrti9y9tu7nzRg5KpheT';
         \Midtrans\Config::$isProduction = false;
         \Midtrans\Config::$isSanitized = true;
         \Midtrans\Config::$is3ds = true;
         $orders = Order::where('user_id', Auth::id())->get();
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 10000,
-            )
-        );
-
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('landing.pesanan.index', compact('orders', 'snapToken'));
+        foreach ($orders as $order) {
+            if (!$order->midtrans_token) {
+                $order_id = Auth::user()->name . '-' . rand();
+                $params = array(
+                    'transaction_details' => array(
+                        'order_id' => $order_id,
+                        'gross_amount' => $order->luas_lahan * $order->jasa->harga,
+                    )
+                );
+                $order->midtrans_token = \Midtrans\Snap::getSnapToken($params);
+                $order->midtrans_id = $order_id;
+                $order->save();
+            }
+        }
+        return view('landing.pesanan.index', compact('orders'));
     }
 
     public function bayarLamaran($id)

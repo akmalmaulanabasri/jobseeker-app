@@ -17,12 +17,13 @@
                                 <th>Luas Lahan</th>
                                 <th>Alamat</th>
                                 <th>Jasa</th>
+                                <th>Gaji</th>
                                 <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @empty(!$orders)
+                            @empty($orders)
                                 <tr>
                                     <td colspan="6">
                                         <div class="d-flex justify-content-center w-100">
@@ -38,25 +39,11 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->luas_lahan }}</td>
                                     <td>{{ $item->alamat }}</td>
-                                    <td>{{ $item->jasa }}</td>
+                                    <td>{{ $item->jasa->nama }}</td>
+                                    <td>RP{{ number_format($item->total, 2) }}</td>
                                     <td>{{ $item->keterangan }}</td>
                                     <td>
-                                        @if (!$item->is_paid)
-                                            <a href="{{ route('order.bayar', $item->id) }}"
-                                                class="btn btn-danger btn-sm">Bayar</a>
-                                        @endif
-                                        <a href="{{ route('order.show', $item->id) }}"
-                                            class="btn btn-info btn-sm">Detail</a>
-                                        <a href="{{ route('order.edit', $item->id) }}"
-                                            class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('order.destroy', $item->id) }}" method="POST"
-                                            style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                        </form>
-                                        <a href="{{ route('pelamar', $item->id) }}"
-                                            class="btn btn-warning btn-sm">Pelamar</a>
+                                        <a href="{{ route('order.show', $item->id) }}" class="btn btn-info btn-sm">Detail</a>
                                     </td>
                                 </tr>
                             @endforeach

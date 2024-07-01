@@ -35,7 +35,7 @@ Route::prefix('/')->group(function () {
 
     Route::get('/detail-postingan/{id}', [ViewController::class, 'detailPostinga'])->name('detail-postingan')->middleware('auth');
     Route::get('/create-lamaran/{id}', [ViewController::class, 'createLamaran'])->name('create-lamaran')->middleware('auth');
-    Route::get('/pesanan-anda', [ViewController::class, 'listLamaranLanding'])->name('list-pesanan-landing')->middleware('auth');
+    Route::get('/pesanan-anda', [ViewController::class, 'listPesananAnda'])->name('list-pesanan-landing')->middleware('auth');
     Route::get('/profile-user', [ViewController::class, 'profileUser'])->name('profile-user')->middleware('auth');
     Route::patch('/edit-profile-user/{id}', [ViewController::class, 'edit'])->name('edit-profile-user')->middleware('auth');
     Route::get('/simpan-lamaran-user', [ViewController::class, 'simpanLamaran'])->name('simpan-lamaran-user')->middleware('auth');

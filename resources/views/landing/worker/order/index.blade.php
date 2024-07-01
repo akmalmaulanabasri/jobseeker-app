@@ -17,7 +17,8 @@
                 <div class="card my-2">
                     <img src="{{ asset('storage/image/' . $worker->profile_picture) }}" class="square" alt="...">
                     <div class="card-body">
-                        <a class="h2 text-decoration-none" href="/profile-farmer/{{ $worker->id }}">{{ $worker->name }}</a>
+                        <a class="h2 text-decoration-none"
+                            href="/profile-farmer/{{ $worker->id }}">{{ $worker->name }}</a>
                         <br>
                         <small>{{ $worker->address }}</small><br>
                     </div>
@@ -62,7 +63,7 @@
                                 <select name="jasa" id="jasa" class="form-control">
                                     <option value="">Pilih jasa</option>
                                     @foreach ($jasa as $item)
-                                        <option value="{{ $item['nama'] }}">{{ $item['nama'] }}</option>
+                                        <option value="{{ $item['id'] }}">{{ $item['nama'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
