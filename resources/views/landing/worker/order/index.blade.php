@@ -17,7 +17,8 @@
                 <div class="card my-2">
                     <img src="{{ asset('storage/image/' . $worker->profile_picture) }}" class="square" alt="...">
                     <div class="card-body">
-                        <h2 class="card-text">{{ $worker->name }}</h2>
+                        <a class="h2 text-decoration-none" href="/profile-farmer/{{ $worker->id }}">{{ $worker->name }}</a>
+                        <br>
                         <small>{{ $worker->address }}</small><br>
                     </div>
                 </div>

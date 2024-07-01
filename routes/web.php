@@ -42,6 +42,7 @@ Route::prefix('/')->group(function () {
     Route::post('/simpan-lamaran', [SimpanController::class, 'store'])->name('simpan-lamaran')->middleware('auth');
     Route::delete('/simpan-lamaran-delete/{id}', [SimpanController::class, 'destroy'])->name('simpan-lamaran-delete')->middleware('auth');
     Route::get('lamaran/bayar/{id}', [ViewController::class, 'bayarLamaran'])->name('lamaran.bayar')->middleware('auth');
+    Route::get('/profile-farmer/{id}', [FarmerController::class, 'show'])->name('profile-farmer')->middleware('auth');
 
 });
 

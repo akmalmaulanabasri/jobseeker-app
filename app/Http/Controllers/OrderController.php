@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jasa;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,32 +26,7 @@ class OrderController extends Controller
     public function create($id)
     {
         $worker = User::find($id);
-        $jasa = [
-            [
-                'nama' => 'Sanitasi Lahan',
-                'harga' => '187',
-            ],
-            [
-                'nama' => 'Pembenihan',
-                'harga' => '75',
-            ],
-            [
-                'nama' => 'Penanaman',
-                'harga' => '175',
-            ],
-            [
-                'nama' => 'Pemupukan',
-                'harga' => '362',
-            ],
-            [
-                'nama' => 'Pemeliharaan',
-                'harga' => '375',
-            ],
-            [
-                'nama' => 'Panen',
-                'harga' => '300',
-            ],
-        ];
+        $jasa = Jasa::all();
         return view('landing.worker.order.index', compact('worker', 'jasa', 'id'));
     }
 
